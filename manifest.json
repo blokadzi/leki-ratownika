@@ -1,0 +1,30 @@
+{
+  "name": "Leki ratownika — kurs 10 × 5",
+  "short_name": "Leki ZRM",
+  "description": "50 leków ratownika medycznego w 10 działach: karty, fiszki, testy, słowniczek.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B1120",
+  "theme_color": "#0B1120",
+  "lang": "pl",
+  "icons": [
+    {
+      "src": "icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
