@@ -243,6 +243,24 @@
   .sl-h p { margin:0; font-size:14px; }
   .sl-h .tt-l { color:var(--czern2); border-top-color:var(--czern2); }
 
+  /* konto */
+  .konto-pasek { display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; margin-top:16px; padding:12px 14px; background:var(--papier3); border-left:8px solid var(--czern); font-size:14.5px; }
+  .konto-form { display:flex; flex-direction:column; gap:6px; max-width:440px; }
+  .konto-form label { font:700 15px/1.2 var(--f-plakat); letter-spacing:.07em; text-transform:uppercase; margin-top:8px; }
+  .konto-form input { padding:12px 14px; border:2px solid var(--czern); background:var(--papier3); color:var(--czern); font:16px var(--f-tekst); border-radius:0; outline:none; }
+  .konto-form input:focus { box-shadow:5px 5px 0 var(--zolty); }
+  .konto-form .btn { margin-top:14px; align-self:flex-start; }
+  .k-blad { color:var(--zle); font-weight:700; margin:6px 0 0; min-height:1.2em; }
+  .k-blad:empty { min-height:0; margin:0; }
+  .k-info { background:var(--zolty2); padding:9px 12px; font-weight:700; margin:0 0 6px; }
+  .konto-panel { margin-top:18px; max-width:560px; }
+  .konto-nick { font:400 clamp(28px,6vw,40px)/1.1 var(--f-maszyna); text-transform:uppercase; margin:4px 0 6px; overflow-wrap:anywhere; }
+  .konto-uwaga { max-width:60ch; margin-top:14px; }
+  .konto-usun { margin-top:14px; max-width:560px; }
+  .konto-usun summary { cursor:pointer; font:700 16px/1.2 var(--f-plakat); letter-spacing:.06em; text-transform:uppercase; color:var(--zle); }
+  .konto-usun[open] summary { margin-bottom:8px; }
+  #k-btn { max-width:38vw; overflow:hidden; text-overflow:ellipsis; }
+
   @media (max-width:640px) {
     .plakat-pole { min-height:340px; padding:20px 18px 22px; }
     .plakat-il { position:relative; order:3; right:auto; bottom:auto; width:112%; max-width:none; margin:4px -18% -34px auto; }
@@ -270,6 +288,7 @@
 <div class="gora"><div class="gora-in">
   <button class="wstecz" id="wstecz" hidden>← Działy</button>
   <div class="gora-t" id="gora-t">Leki ratownika medycznego</div>
+  <button class="wstecz" id="k-btn" hidden>Zaloguj</button>
   <button class="wstecz" id="sl-btn">Słowniczek</button>
 </div></div>
 <main class="wrap" id="app"></main>
@@ -1402,10 +1421,28 @@ const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
 const app = $("#app");
 
 // ── pamięć postępu (działa też bez localStorage) ──
-const LS = "leki_ratownika_kurs_v1";
-let stan = { best:{}, umiem:{}, dop:{} };
+const LS = "leki_ratownika_kurs_v1", LS_K = "leki_ratownika_konto_v1";
+// konfiguracja serwera kont (puste = logowanie wyłączone, np. w wersji bez dostępu do sieci)
+const SYNC = { url:"https://wnmvrgdbmaavbomwzhlm.supabase.co", klucz:"sb_publishable_jziT4TQfxafoPIrLq0-YjQ_9IOuIse1" };
+const SEKCJE = ["best", "umiem", "dop"];
+let stan = { best:{}, umiem:{}, dop:{}, t:{} };
 try { const z = JSON.parse(localStorage.getItem(LS) || "null"); if (z && z.best) stan = Object.assign(stan, z); } catch (e) {}
-function zapisz(){ try { localStorage.setItem(LS, JSON.stringify(stan)); } catch (e) {} }
+stan.t = stan.t || {};
+const kopia = () => JSON.parse(JSON.stringify({ best:stan.best, umiem:stan.umiem, dop:stan.dop }));
+let poprz = kopia();
+function zapiszLokalnie(){ try { localStorage.setItem(LS, JSON.stringify(stan)); } catch (e) {} }
+// zapisz(): odnotowuje, które pola się zmieniły (czas zmiany decyduje przy scalaniu urządzeń), i planuje synchronizację
+function zapisz(){
+  const teraz = Date.now();
+  SEKCJE.forEach(s => {
+    const a = stan[s], b = poprz[s] || {};
+    new Set([...Object.keys(a), ...Object.keys(b)]).forEach(k => {
+      const va = s === "best" ? (a[k] || 0) : !!a[k], vb = s === "best" ? (b[k] || 0) : !!b[k];
+      if (va !== vb) stan.t[s + "|" + k] = teraz;
+    });
+  });
+  poprz = kopia(); zapiszLokalnie(); planujSync();
+}
 
 // ── narzędzia ──
 function tasuj(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
@@ -1498,7 +1535,7 @@ function losujTest(sekIds, typy, ile){
 // ── nawigacja ──
 const gora = $("#gora-t"), wstecz = $("#wstecz");
 let powrot = null, widok = "hub";
-function naglowek(t, fn, etyk){ gora.textContent = t; powrot = fn; wstecz.hidden = !fn; wstecz.textContent = etyk || "← Działy"; $("#sl-btn").hidden = widok === "test" || widok === "slownik"; ttUkryj(); }
+function naglowek(t, fn, etyk){ gora.textContent = t; powrot = fn; wstecz.hidden = !fn; wstecz.textContent = etyk || "← Działy"; $("#sl-btn").hidden = widok === "test" || widok === "slownik"; rysPrzyciskKonta(); ttUkryj(); }
 wstecz.onclick = () => powrot && powrot();
 function ustawKolor(k){ const s = document.documentElement.style; k = k || INK; s.setProperty("--kol", k); s.setProperty("--na", naKol(k)); }
 function naGore(){ window.scrollTo(0, 0); }
@@ -1526,6 +1563,7 @@ function hub(){
       <p class="intro">Każdy dział to pięć leków, które łączy jedna sytuacja kliniczna. Ucz się z kart, powtarzaj fiszkami, a na koniec sprawdź się testem — z jednego działu albo z kilku naraz.</p>
       <input class="szukaj" id="szukaj" type="search" placeholder="Szukaj leku: nazwa polska lub łacińska…" autocomplete="off">
       <div class="wyniki" id="wyniki"></div>
+      ${SYNC.url ? `<div class="konto-pasek">${konto ? `<span>Zalogowano jako <b>${esc(konto.nick)}</b>. <span class="k-status">${opisSync()}</span></span><button class="chip" id="h-konto">Konto</button>` : `<span>Zaloguj się, aby mieć ten sam postęp na telefonie i komputerze. Wystarczy nick i hasło.</span><button class="chip on" id="h-konto">Zaloguj się</button>`}</div>` : ""}
       <div class="podp-sl"><span>Nie znasz skrótu? Słowa <span class="term" tabindex="0" data-g="${SLOWNIK.findIndex(e => e.n === "VF / pVT")}">podkreślone kropkami</span> mają objaśnienia — najedź albo dotknij.</span><button class="chip on" id="h-sl">Słowniczek · ${SLOWNIK.length} haseł</button></div>
     </section>
 
@@ -1570,6 +1608,7 @@ function hub(){
 
   $$(".kafel").forEach(k => k.onclick = () => otworzDzial(k.dataset.d));
   $("#h-sl").onclick = slownik;
+  if ($("#h-konto")) $("#h-konto").onclick = otworzKonto;
   // wyszukiwarka
   $("#szukaj").oninput = e => {
     const s = e.target.value.trim().toLowerCase();
@@ -1876,8 +1915,194 @@ function slownik(){
   rys(); naGore();
 }
 $("#sl-btn").onclick = slownik;
+$("#k-btn").onclick = otworzKonto;
+
+// ═══════════ KONTO: logowanie bez maila i synchronizacja postępu ═══════════
+let konto = null;
+try { konto = JSON.parse(localStorage.getItem(LS_K) || "null"); } catch (e) {}
+let syncInfo = { stan:"", czas:null }, syncTimer = null, ostatniSync = 0;
+const BLEDY = {
+  NICK_NIEPOPRAWNY:"Nick musi mieć 3–20 znaków: litery, cyfry, kropka, myślnik lub podkreślnik.",
+  HASLO_ZA_KROTKIE:"Hasło musi mieć co najmniej 6 znaków.",
+  HASLO_ZA_DLUGIE:"Hasło jest za długie.",
+  NICK_ZAJETY:"Ten nick jest już zajęty. Wybierz inny albo zaloguj się.",
+  BLEDNE_DANE:"Nieprawidłowy nick lub hasło.",
+  BLEDNE_HASLO:"Nieprawidłowe hasło.",
+  SESJA_WYGASLA:"Sesja wygasła. Zaloguj się ponownie.",
+  SIEC:"Brak połączenia z serwerem. Sprawdź internet i spróbuj ponownie."
+};
+const opisBledu = e => BLEDY[e && e.message] || "Nie udało się wykonać operacji. Spróbuj ponownie za chwilę.";
+async function rpc(fn, args){
+  const h = { "Content-Type":"application/json", apikey:SYNC.klucz };
+  if (SYNC.klucz.startsWith("eyJ")) h.Authorization = "Bearer " + SYNC.klucz;
+  let r;
+  try { r = await fetch(SYNC.url.replace(/\/+$/, "") + "/rest/v1/rpc/" + fn, { method:"POST", headers:h, body:JSON.stringify(args) }); }
+  catch (e) { throw new Error("SIEC"); }
+  const tekst = await r.text(); let j = null;
+  try { j = tekst ? JSON.parse(tekst) : null; } catch (e) {}
+  if (!r.ok) throw new Error((j && j.message) || ("HTTP_" + r.status));
+  return j;
+}
+function doSerwera(){
+  const out = { best:{}, umiem:{}, dop:{} };
+  SEKCJE.forEach(s => Object.keys(stan[s]).forEach(k => { out[s][k] = { v: s === "best" ? stan[s][k] : !!stan[s][k], t: stan.t[s + "|" + k] || 0 }; }));
+  Object.entries(stan.t).forEach(([klucz, t]) => {
+    const i = klucz.indexOf("|"), s = klucz.slice(0, i), k = klucz.slice(i + 1);
+    if (SEKCJE.includes(s) && !out[s][k]) out[s][k] = { v: s === "best" ? 0 : false, t };
+  });
+  return out;
+}
+function zSerwera(p){
+  const przed = JSON.stringify(kopia());
+  SEKCJE.forEach(s => Object.entries((p && p[s]) || {}).forEach(([k, e]) => {
+    if (!e || typeof e !== "object") return;
+    if (s === "best") { if (+e.v > 0) stan.best[k] = +e.v; else delete stan.best[k]; }
+    else if (e.v) stan[s][k] = true; else delete stan[s][k];
+    stan.t[s + "|" + k] = +e.t || 0;
+  }));
+  poprz = kopia(); zapiszLokalnie();
+  return JSON.stringify(poprz) !== przed;
+}
+function planujSync(){ if (!konto || !SYNC.url) return; clearTimeout(syncTimer); syncTimer = setTimeout(synchronizuj, 1200); }
+function ustawSync(s){
+  syncInfo.stan = s; if (s === "ok") syncInfo.czas = new Date();
+  const txt = opisSync();
+  $$(".k-status").forEach(e => e.textContent = txt);
+  rysPrzyciskKonta();
+}
+function opisSync(){
+  if (!konto) return "";
+  if (syncInfo.stan === "trwa") return "Synchronizuję…";
+  if (syncInfo.stan === "blad") return "Brak połączenia — zmiany są zapisane na tym urządzeniu i zostaną wysłane później.";
+  if (syncInfo.czas) return "Zsynchronizowano o " + syncInfo.czas.toLocaleTimeString("pl-PL", { hour:"2-digit", minute:"2-digit" }) + ".";
+  return "Postęp zapisuje się na koncie.";
+}
+async function synchronizuj(){
+  if (!konto || !SYNC.url) return false;
+  clearTimeout(syncTimer); ustawSync("trwa"); ostatniSync = Date.now();
+  try {
+    const r = await rpc("synchronizuj", { p_token:konto.token, p_postep:doSerwera() });
+    const zmiana = zSerwera(r && r.postep);
+    ustawSync("ok");
+    if (zmiana) odswiezWidok();
+    return true;
+  } catch (e) {
+    if (e.message === "SESJA_WYGASLA") { wylogujLokalnie(false); komunikatKonta = BLEDY.SESJA_WYGASLA; if (widok === "konto") rysKonto(); }
+    else ustawSync("blad");
+    return false;
+  }
+}
+function odswiezWidok(){
+  if (widok === "hub") hub();
+  else if (widok === "dzial" && zakladka === "nauka") rysNauke();
+  else if (widok === "konto") rysKonto();
+}
+function wylogujLokalnie(wyczyscPostep){
+  konto = null; try { localStorage.removeItem(LS_K); } catch (e) {}
+  if (wyczyscPostep) { stan = { best:{}, umiem:{}, dop:{}, t:{} }; poprz = kopia(); zapiszLokalnie(); }
+  syncInfo = { stan:"", czas:null }; rysPrzyciskKonta();
+}
+function rysPrzyciskKonta(){
+  const b = $("#k-btn"); if (!b) return;
+  b.hidden = !SYNC.url || widok === "test" || widok === "konto";
+  b.textContent = konto ? konto.nick : "Zaloguj";
+  b.title = konto ? opisSync() : "Zaloguj się, aby mieć ten sam postęp na każdym urządzeniu";
+}
+window.addEventListener("online", () => synchronizuj());
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && Date.now() - ostatniSync > 30000) synchronizuj(); });
+
+let trybKonta = "login", komunikatKonta = "", kontoWroc = null;
+function otworzKonto(){
+  kontoWroc = widok === "dzial" && D ? (id => () => otworzDzial(id, zakladka, lekIdx))(D.id) : hub;
+  widok = "konto"; T = null; ustawKolor(); naglowek("Konto", kontoWroc, "← Wróć");
+  rysKonto(); naGore();
+}
+function rysKonto(){
+  const nag = `<section class="dz-hero ziarno"><span class="et">Konto</span><h2>${konto ? "Twoje konto" : "Zaloguj się"}</h2>
+    <p>Wystarczy nick i hasło, bez adresu e-mail. Postęp zapisuje się na koncie i jest taki sam na każdym urządzeniu, na którym się zalogujesz.</p></section>`;
+  if (konto) {
+    app.innerHTML = nag + `
+      <div class="panel konto-panel">
+        <div class="et">Zalogowano jako</div>
+        <div class="konto-nick">${esc(konto.nick)}</div>
+        <p class="k-status mini">${opisSync()}</p>
+        ${komunikatKonta ? `<p class="k-info" role="status">${esc(komunikatKonta)}</p>` : ""}
+        <div class="rzad" style="margin-top:14px"><button class="btn" id="k-sync">Synchronizuj teraz</button><button class="btn sec" id="k-wyl">Wyloguj</button></div>
+        <div id="k-wyl-pyt"></div>
+      </div>
+      <details class="panel konto-usun"><summary>Usuń konto</summary>
+        <p class="mini">Konto i zapisany na nim postęp zostaną trwale usunięte. Tej operacji nie można cofnąć.</p>
+        <form id="k-usun" class="konto-form">
+          <label for="k-usun-h">Hasło</label><input id="k-usun-h" type="password" autocomplete="current-password" required>
+          <button class="btn" type="submit" style="background:var(--zle)">Usuń konto na stałe</button>
+          <p class="k-blad" id="k-usun-blad" role="alert"></p>
+        </form>
+      </details>`;
+    komunikatKonta = "";
+    $("#k-sync").onclick = () => synchronizuj();
+    $("#k-wyl").onclick = async () => {
+      const b = $("#k-wyl"); b.disabled = true; b.textContent = "Wylogowuję…";
+      const ok = await synchronizuj();
+      if (!ok && konto) {
+        b.disabled = false; b.textContent = "Wyloguj";
+        $("#k-wyl-pyt").innerHTML = `<p class="k-blad">Nie udało się zapisać ostatnich zmian na koncie, bo nie ma połączenia z serwerem. Po wylogowaniu znikną z tego urządzenia.</p><button class="btn sec" id="k-wyl-mimo">Wyloguj mimo to</button>`;
+        $("#k-wyl-mimo").onclick = () => wyloguj();
+        return;
+      }
+      if (konto) wyloguj();
+    };
+    $("#k-usun").onsubmit = async e => {
+      e.preventDefault();
+      const b = $("#k-usun button"); b.disabled = true;
+      try { await rpc("usun_konto", { p_token:konto.token, p_haslo:$("#k-usun-h").value }); wylogujLokalnie(false); komunikatKonta = "Konto zostało usunięte. Postęp na tym urządzeniu pozostał bez zmian."; rysKonto(); }
+      catch (err) { b.disabled = false; $("#k-usun-blad").textContent = opisBledu(err); }
+    };
+    return;
+  }
+  const rej = trybKonta === "rejestracja";
+  app.innerHTML = nag + `
+    <div class="rzad" style="margin-top:18px"><button class="tab ${!rej ? "on" : ""}" id="k-tl">Mam konto</button><button class="tab ${rej ? "on" : ""}" id="k-tr">Nowe konto</button></div>
+    <form class="panel konto-form" id="k-form" style="margin-top:12px" novalidate>
+      ${komunikatKonta ? `<p class="k-info" role="status">${esc(komunikatKonta)}</p>` : ""}
+      <label for="k-nick">Nick</label>
+      <input id="k-nick" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="20" required>
+      <label for="k-haslo">Hasło</label>
+      <input id="k-haslo" type="password" autocomplete="${rej ? "new-password" : "current-password"}" required>
+      ${rej ? `<label for="k-haslo2">Powtórz hasło</label><input id="k-haslo2" type="password" autocomplete="new-password" required>` : ""}
+      <button class="btn" type="submit" id="k-ok">${rej ? "Załóż konto" : "Zaloguj się"}</button>
+      <p class="k-blad" id="k-blad" role="alert"></p>
+    </form>
+    <p class="mini konto-uwaga">${rej ? "Nick: 3–20 znaków (litery, cyfry, kropka, myślnik, podkreślnik). Hasło: co najmniej 6 znaków. " : ""}Hasła nie da się odzyskać ani zresetować, bo konto nie ma adresu e-mail — zapisz je w bezpiecznym miejscu. Postęp zapisany wcześniej na tym urządzeniu zostanie dołączony do konta.</p>`;
+  komunikatKonta = "";
+  $("#k-tl").onclick = () => { trybKonta = "login"; rysKonto(); };
+  $("#k-tr").onclick = () => { trybKonta = "rejestracja"; rysKonto(); };
+  $("#k-form").onsubmit = async e => {
+    e.preventDefault();
+    const nick = $("#k-nick").value.trim(), haslo = $("#k-haslo").value, bl = $("#k-blad");
+    if (!/^[A-Za-z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ._-]{3,20}$/.test(nick)) { bl.textContent = BLEDY.NICK_NIEPOPRAWNY; return; }
+    if (haslo.length < 6) { bl.textContent = BLEDY.HASLO_ZA_KROTKIE; return; }
+    if (rej && haslo !== $("#k-haslo2").value) { bl.textContent = "Hasła nie są takie same."; return; }
+    const ok = $("#k-ok"); ok.disabled = true; ok.textContent = rej ? "Zakładam konto…" : "Loguję…"; bl.textContent = "";
+    try {
+      const r = await rpc(rej ? "rejestracja" : "logowanie", { p_nick:nick, p_haslo:haslo });
+      konto = { token:r.token, nick:r.nick }; try { localStorage.setItem(LS_K, JSON.stringify(konto)); } catch (err) {}
+      await synchronizuj();
+      komunikatKonta = rej ? "Konto zostało założone." : "Zalogowano.";
+      rysPrzyciskKonta(); rysKonto();
+    } catch (err) { ok.disabled = false; ok.textContent = rej ? "Załóż konto" : "Zaloguj się"; bl.textContent = opisBledu(err); }
+  };
+}
+async function wyloguj(){
+  const t = konto && konto.token;
+  wylogujLokalnie(true);
+  if (t) rpc("wyloguj", { p_token:t }).catch(() => {});
+  komunikatKonta = "Wylogowano. Postęp jest zapisany na koncie, a z tego urządzenia został usunięty.";
+  rysKonto();
+}
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c]); }
 
 hub();
+synchronizuj();
 
 </script>
 <script>
