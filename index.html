@@ -278,19 +278,19 @@
 // ═══════════════════════ DANE: DZIAŁY 1–5 ═══════════════════════
 const DZIALY = [
 { id:"nzk", nr:1, t:"NZK i wstrząs", ik:"⚡", kol:"#F0464E",
-  opis:"Leki, po które sięgasz, gdy krążenie stanęło albo ledwo zipie.",
+  opis:"Leki stosowane w zatrzymaniu krążenia i we wstrząsie.",
   siatka:[
     ["Zawsze", "RKO + tlen 100%. Bez przepływu i tlenu żaden lek nie dotrze tam, gdzie ma zadziałać."],
     ["Po 3. defibrylacji", "Adrenalina 1 mg + amiodaron 300 mg (VF/pVT). W asystolii i PEA adrenalina od razu po uzyskaniu dostępu."],
     ["Co 3–5 min", "Kolejna adrenalina 1 mg. Po 5. defibrylacji amiodaron 150 mg."],
     ["Szukaj przyczyny (4H/4T)", "Hiperkaliemia albo zatrucie TLPD → wodorowęglan sodu 50 mmol."],
-    ["Po ROSC", "Tlen miareczkuj do SpO₂ 94–98%. Ciśnienie nie trzyma mimo płynów → noradrenalina we wlewie."]
+    ["Po ROSC", "Tlen miareczkuj do SpO₂ 94–98%. Hipotensja mimo płynoterapii → noradrenalina we wlewie."]
   ],
   leki:[
   { n:"Adrenalina", lat:"Epinephrinum", post:"roztwór do wstrzykiwań", kl:"Katecholamina — agonista receptorów α i β",
     kiedy:"NZK (każdy rytm) i anafilaksja", klucz:"NZK: 1 mg iv/io co 3–5 min · anafilaksja: 0,5 mg im", droga:"iv, io, im",
     mech:"Pobudza α1 (skurcz naczyń — rośnie ciśnienie perfuzji wieńcowej i mózgowej podczas RKO), β1 (siła i częstość skurczów serca) oraz β2 (rozkurcz oskrzeli). Hamuje też degranulację mastocytów.",
-    obraz:"Pedał gazu wciśnięty do dechy: naczynia zaciskają się jak wąż ogrodowy ściśnięty palcem (α1), serce dostaje kopa (β1), oskrzela się otwierają (β2).",
+    obraz:"Działa jak ogólnoustrojowy sygnał alarmowy dla krążenia: obkurcza naczynia, co podnosi ciśnienie (α1), zwiększa siłę i częstość skurczów serca (β1) oraz rozszerza oskrzela (β2).",
     wsk:["Nagłe zatrzymanie krążenia — niezależnie od rytmu","Anafilaksja i wstrząs anafilaktyczny","Bradykardia oporna na atropinę (wlew)","Stan astmatyczny, wstrząs kardiogenny"],
     dor:["NZK: 1 mg iv/io co 3–5 min. W VF/pVT pierwsza dawka po 3. defibrylacji, w asystolii/PEA — jak najszybciej.","Anafilaksja: 0,5 mg im (0,5 ml roztworu 1 mg/ml) w przednio-boczną część uda; powtórz po 5 min, gdy brak poprawy.","Bradykardia oporna na atropinę: wlew 2–10 µg/min."],
     dz:"NZK: 10 µg/kg iv/io co 3–5 min. Anafilaksja im: do 6 lat 0,15 mg · 6–12 lat 0,3 mg · powyżej 12 lat 0,5 mg.",
@@ -299,12 +299,12 @@ const DZIALY = [
     uw:"W anafilaksji domięśniowo w udo — nie dożylnie i nie podskórnie (podręcznik z 2017 r. dopuszcza jeszcze s.c., aktualne wytyczne już nie). Nie podawaj jedną linią z wodorowęglanem.",
     scen:"Mężczyzna po użądleniu przez osę: świsty, obrzęk warg, rozlana pokrzywka, RR 70/40.",
     dq:{ q:"Jaka jest dawka adrenaliny u dorosłego w anafilaksji?", a:"0,5 mg domięśniowo w udo", d:["1 mg dożylnie w bolusie","0,1 mg podskórnie w ramię","5 mg w nebulizacji"] },
-    pq:{ q:"VF/pVT — kiedy podajesz pierwszą dawkę adrenaliny?", a:"Po 3. defibrylacji", d:["Od razu, przed 1. defibrylacją","Po 1. defibrylacji","Dopiero po 5. defibrylacji"], w:"W rytmach do defibrylacji adrenalina 1 mg idzie po 3. wyładowaniu, potem co 3–5 min. W asystolii i PEA podajesz ją natychmiast po uzyskaniu dostępu." } },
+    pq:{ q:"VF/pVT — kiedy podajesz pierwszą dawkę adrenaliny?", a:"Po 3. defibrylacji", d:["Od razu, przed 1. defibrylacją","Po 1. defibrylacji","Dopiero po 5. defibrylacji"], w:"W rytmach do defibrylacji adrenalinę 1 mg podaje się po 3. defibrylacji, potem co 3–5 min. W asystolii i PEA podajesz ją natychmiast po uzyskaniu dostępu." } },
 
   { n:"Amiodaron", lat:"Amiodaroni hydrochloridum", post:"roztwór do wstrzykiwań", kl:"Lek przeciwarytmiczny klasy III",
     kiedy:"VF/pVT oporne na defibrylację", klucz:"300 mg po 3. defibrylacji · 150 mg po 5.", droga:"iv, io",
     mech:"Blokuje kanały potasowe i przez to wydłuża potencjał czynnościowy oraz okres refrakcji komórek serca. Hamuje automatyzm węzła zatokowego i przewodzenie przedsionkowo-komorowe.",
-    obraz:"Wydłuża komórce serca przerwę na oddech: zanim skończy się repolaryzacja, kolejne chaotyczne pobudzenie nie ma jak wystartować.",
+    obraz:"Wydłuża okres refrakcji, czyli czas, w którym komórka serca nie reaguje na kolejny bodziec. Chaotyczne pobudzenia przestają się szerzyć, ponieważ trafiają na komórki niegotowe do ponownego skurczu.",
     wsk:["Migotanie komór i częstoskurcz komorowy bez tętna po 3 nieskutecznych defibrylacjach","Częstoskurcz komorowy z tętnem","Tachyarytmie nadkomorowe, migotanie i trzepotanie przedsionków (także w WPW)"],
     dor:["NZK (VF/pVT): 300 mg iv/io w bolusie po 3. defibrylacji, kolejne 150 mg po 5.","Arytmie z tętnem: 150–300 mg w 5% glukozie, powoli (co najmniej 3 min; pacjent stabilny — wlew 20–60 min)."],
     dz:"NZK: 5 mg/kg iv/io po 3. i po 5. defibrylacji.",
@@ -318,7 +318,7 @@ const DZIALY = [
   { n:"Noradrenalina", lat:"Noradrenalinum", post:"roztwór do wstrzykiwań", kl:"Katecholamina — silny agonista α1", tag:"nowy",
     kiedy:"Wstrząs z niskim ciśnieniem mimo płynów", klucz:"wlew w pompie 0,05–0,5 µg/kg/min do MAP ≥ 65", droga:"iv — tylko wlew",
     mech:"Silnie pobudza receptory α1 (skurcz naczyń, wzrost oporu obwodowego i ciśnienia) i słabo β1 (niewielki wzrost siły skurczu serca).",
-    obraz:"Zaciska naczynia jak mankiet ciśnieniomierza — podnosi ciśnienie, prawie nie przyspieszając serca.",
+    obraz:"Działa podobnie jak zwężenie przekroju przewodu: przy tej samej objętości płynu rośnie ciśnienie. Obkurcza naczynia i podnosi ciśnienie tętnicze, w niewielkim stopniu przyspieszając czynność serca.",
     wsk:["Ostra hipotensja i wstrząs: septyczny, neurogenny, dystrybucyjny","Wstrząs kardiogenny i hipotensja po ROSC","Pomocniczo we wstrząsie krwotocznym — po opanowaniu krwawienia i podaniu płynów"],
     dor:["Wyłącznie wlew ciągły w pompie: 0,05–0,5 µg/kg/min, miareczkowany do MAP ≥ 65 mmHg.","Przykład z podręcznika: 4 mg (1 ampułka) w 50 ml, start od 5 ml/h — u osoby 70 kg to ok. 0,1 µg/kg/min."],
     dz:"Wlew od 0,05–0,1 µg/kg/min, miareczkowany — w porozumieniu z lekarzem.",
@@ -332,7 +332,7 @@ const DZIALY = [
   { n:"Wodorowęglan sodu 8,4%", lat:"Natrii hydrogenocarbonas 8,4%", post:"roztwór do wstrzykiwań", kl:"Lek alkalizujący (bufor)",
     kiedy:"NZK w hiperkaliemii lub zatruciu TLPD", klucz:"50 mmol = 50 ml · albo 1 mmol/kg (1 ml/kg)", droga:"iv, io",
     mech:"Dysocjuje na jony sodowe i wodorowęglanowe; wodorowęglan wiąże jony wodorowe i podnosi pH krwi. W zatruciu TLPD ładunek sodu dodatkowo odblokowuje kanały sodowe serca.",
-    obraz:"Gaśnica na kwas: wyłapuje jony H⁺, ale z reakcji powstaje CO₂ — ktoś musi go wywentylować, inaczej kwas wraca do komórek.",
+    obraz:"Działa jak bufor w roztworze laboratoryjnym: wiąże nadmiar jonów wodorowych i podnosi pH. Powstający przy tym dwutlenek węgla musi zostać usunięty przez wentylację.",
     wsk:["NZK z hiperkaliemią lub w zatruciu trójpierścieniowymi lekami przeciwdepresyjnymi","Ciężka kwasica metaboliczna","Alkalizacja moczu w zatruciach (salicylany, barbiturany)"],
     dor:["NZK (hiperkaliemia, TLPD): 50 mmol, czyli 50 ml roztworu 8,4% iv.","Wg masy ciała: 1 mmol/kg; przy braku efektu po 10 min można dodać 0,5 mmol/kg.","1 ml roztworu 8,4% = 1 mmol."],
     dz:"1 mmol/kg (1 ml/kg roztworu 8,4%) iv/io, powoli.",
@@ -346,7 +346,7 @@ const DZIALY = [
   { n:"Tlen medyczny", lat:"Oxygenium", post:"gaz", kl:"Gaz medyczny",
     kiedy:"Hipoksemia, RKO, zatrucie tlenkiem węgla", klucz:"cel SpO₂ 94–98% · POChP 88–92% · RKO 100%", droga:"wziewnie",
     mech:"Zwiększa stężenie tlenu we wdychanej mieszaninie, a przez to ciśnienie parcjalne tlenu w pęcherzykach i wysycenie hemoglobiny.",
-    obraz:"To lek, a nie powietrze na wszelki wypadek. Dawkujesz jak każdy inny — a miarką jest pulsoksymetr.",
+    obraz:"Jest lekiem dawkowanym tak jak każdy inny, a miarą dawki jest saturacja. Niedobór oznacza niedotlenienie tkanek, nadmiar szkodzi m.in. chorym z przewlekłą hiperkapnią.",
     wsk:["Niedotlenienie: SpO₂ poniżej 94% (w POChP poniżej 88%)","RKO i okres okołozatrzymaniowy","Zatrucie tlenkiem węgla — 100% niezależnie od wskazań pulsoksymetru","Wstrząs, ciężki uraz, duszność"],
     dor:["Cel: SpO₂ 94–98%; przy ryzyku hiperkapnii (POChP) 88–92%.","Wąsy 1–6 l/min (ok. 24–44%) · maska prosta 5–8 l/min (40–60%) · maska z rezerwuarem 10–15 l/min (do ok. 90%).","RKO: możliwie 100% — worek samorozprężalny z rezerwuarem, 15 l/min."],
     dz:"Cel SpO₂ 94–98% jak u dorosłych. Małe dzieci źle tolerują maskę — podawaj przepływowo przy twarzy.",
@@ -359,19 +359,19 @@ const DZIALY = [
   ]},
 
 { id:"rytm", nr:2, t:"Rytm serca", ik:"💓", kol:"#FB923C",
-  opis:"Za wolno, za szybko albo chaotycznie — pięć leków na trzy problemy.",
+  opis:"Leki stosowane w bradykardii, częstoskurczach i komorowych zaburzeniach rytmu.",
   siatka:[
-    ["Za wolno i źle znosi", "Atropina 0,5 mg, powtarzana do 3 mg. Bez efektu → adrenalina we wlewie 2–10 µg/min (dział 1)."],
-    ["Szybko, wąsko, miarowo", "Manewry wagalne → adenozyna 6 → 12 → 18 mg błyskawicznym bolusem."],
-    ["Szybko i niemiarowo (AF)", "Metoprolol powoli — nie przywraca rytmu, tylko zwalnia komory."],
-    ["Komorowe, a amiodaronu brak", "Lidokaina 100 mg, potem 50 mg."],
+    ["Bradykardia z objawami", "Atropina 0,5 mg, powtarzana do 3 mg. Bez efektu → adrenalina we wlewie 2–10 µg/min (dział 1)."],
+    ["Miarowy częstoskurcz z wąskimi QRS", "Manewry wagalne → adenozyna 6 → 12 → 18 mg błyskawicznym bolusem."],
+    ["Migotanie przedsionków z szybką czynnością komór", "Metoprolol powoli — nie przywraca rytmu zatokowego, zwalnia czynność komór."],
+    ["VF/pVT przy braku amiodaronu", "Lidokaina 100 mg, potem 50 mg."],
     ["Torsade de pointes, rzucawka", "Siarczan magnezu 2 g (rzucawka 4 g)."]
   ],
   leki:[
   { n:"Atropina", lat:"Atropini sulfas", post:"roztwór do wstrzykiwań", kl:"Cholinolityk — antagonista receptorów muskarynowych",
     kiedy:"Objawowa bradykardia", klucz:"0,5 mg iv co 3–5 min, do 3 mg", droga:"iv, io, im",
     mech:"Blokuje receptory muskarynowe i znosi działanie acetylocholiny: wyłącza hamujący wpływ nerwu błędnego na węzeł zatokowy i przedsionkowo-komorowy.",
-    obraz:"Zdejmuje nogę nerwu błędnego z hamulca — serce przyspiesza. Reszta ciała wysycha: suche usta, szerokie źrenice, gorąca skóra.",
+    obraz:"W spoczynku nerw błędny stale hamuje pracę serca. Lek znosi to hamowanie: serce przyspiesza, a jednocześnie wysychają błony śluzowe i rozszerzają się źrenice.",
     wsk:["Bradykardia z objawami niestabilności, blok przedsionkowo-komorowy","Zatrucie związkami fosforoorganicznymi i karbaminianami","Premedykacja, kolka (jako spazmolityk)"],
     dor:["Bradykardia: 0,5 mg iv, powtarzaj co 3–5 min do łącznej dawki 3 mg.","Zatrucie fosforoorganiczne: 1–2 mg iv/im, powtarzaj co 5–20 min aż wyschnie wydzielina w oskrzelach."],
     dz:"Bradykardia: 0,02 mg/kg iv (podręcznik: 0,01–0,03 mg/kg), pojedynczo maks. 0,5 mg. Zatrucie fosforoorganiczne: 0,02–0,05 mg/kg.",
@@ -380,12 +380,12 @@ const DZIALY = [
     uw:"Dawka poniżej 0,5 mg może paradoksalnie zwolnić rytm. W asystolii i PEA nie stosuje się jej już rutynowo — podręcznik z 2017 r. podaje jeszcze 3 mg jednorazowo.",
     scen:"Rytm zatokowy 34/min, RR 80/50, zawroty głowy, zimny pot.",
     dq:{ q:"Dawka atropiny w objawowej bradykardii u dorosłego?", a:"0,5 mg iv, powtarzana do łącznie 3 mg", d:["3 mg od razu, potem 1 mg co minutę","0,05 mg iv co 10 min","6 mg w szybkim bolusie"] },
-    pq:{ q:"Atropina w asystolii:", a:"nie jest już rutynowo zalecana", d:["3 mg to lek pierwszego rzutu","podaje się 1 mg co 3 min","podaje się po każdej defibrylacji"], w:"Wytyczne ERC wycofały atropinę z algorytmu asystolii i PEA w 2010 r. Starsze podręczniki, w tym Twój z 2017 r., nadal podają 3 mg." } },
+    pq:{ q:"Atropina w asystolii:", a:"nie jest już rutynowo zalecana", d:["3 mg to lek pierwszego rzutu","podaje się 1 mg co 3 min","podaje się po każdej defibrylacji"], w:"Wytyczne ERC wycofały atropinę z algorytmu asystolii i PEA w 2010 r. Starsze podręczniki, m.in. wydanie z 2017 r., nadal podają 3 mg." } },
 
   { n:"Adenozyna", lat:"Adenosinum", post:"roztwór do wstrzykiwań", kl:"Nukleozyd purynowy — lek przeciwarytmiczny",
     kiedy:"Miarowy częstoskurcz z wąskimi QRS (SVT)", klucz:"6 mg → 12 mg → 18 mg, błyskawiczny bolus", droga:"iv",
     mech:"Otwiera kanały potasowe i hiperpolaryzuje komórki węzła przedsionkowo-komorowego: na kilka sekund blokuje w nim przewodzenie i przerywa pętlę nawrotną.",
-    obraz:"Restart routera: na parę sekund wyłącza węzeł AV, pętla częstoskurczu się przerywa i rytm startuje od nowa.",
+    obraz:"Na kilka sekund blokuje przewodzenie w węźle przedsionkowo-komorowym. Przerywa w ten sposób obwód, po którym krąży impuls w częstoskurczu nawrotnym, i pozwala węzłowi zatokowemu ponownie przejąć rytm.",
     wsk:["Nawrotny częstoskurcz węzłowy i przedsionkowo-komorowy po nieskutecznych manewrach wagalnych","Różnicowanie częstoskurczów (odsłania trzepotanie przedsionków)"],
     dor:["6 mg w błyskawicznym bolusie + natychmiast 20 ml 0,9% NaCl. Brak efektu po 1–2 min → 12 mg → 18 mg (ERC).","Podręcznik z 2017 r. podaje starszy schemat 3 → 6 → 12 mg."],
     dz:"0,1–0,2 mg/kg (maks. 6 mg); kolejna dawka 0,3 mg/kg (maks. 12 mg).",
@@ -399,13 +399,13 @@ const DZIALY = [
   { n:"Lidokaina", lat:"Lidocaini hydrochloridum", post:"roztwór do wstrzykiwań, żel", kl:"Lek przeciwarytmiczny klasy Ib i znieczulający miejscowo",
     kiedy:"VF/pVT, gdy nie ma amiodaronu · znieczulenie miejscowe", klucz:"100 mg po 3. defibrylacji · 50 mg po 5.", droga:"iv, io, miejscowo",
     mech:"Stabilizuje błony komórkowe, blokując kanały sodowe — hamuje depolaryzację i przewodzenie bodźców w komorach serca i we włóknach nerwowych.",
-    obraz:"Korek w kanale sodowym — iskra pobudzenia nie przeskoczy. W komorach gasi arytmię, w nerwie gasi ból.",
+    obraz:"Blokuje kanały sodowe, przez które przechodzi pobudzenie. W komórkach serca hamuje arytmię komorową, we włóknach nerwowych przewodzenie bólu — to ten sam mechanizm w dwóch tkankach.",
     wsk:["Oporne VF/pVT — tylko gdy amiodaron jest niedostępny","Częstoskurcz komorowy","Znieczulenie miejscowe i powierzchniowe (żel do cewnikowania, znieczulenie nasiękowe)"],
     dor:["NZK: 100 mg iv/io po 3. defibrylacji (1–1,5 mg/kg), 50 mg po 5.; łącznie nie więcej niż 3 mg/kg.","Miejscowo: bezpieczna dawka 3 mg/kg, z adrenaliną 7 mg/kg."],
     dz:"1 mg/kg iv/io (podręcznik: 1–2 mg/kg).",
     pw:"Blok AV II i III stopnia, ciężka bradykardia, nadwrażliwość na amidowe leki znieczulające. Nie podawaj, jeśli pacjent dostał już amiodaron.",
     dn:"Objawy toksyczności z OUN: drętwienie wokół ust, metaliczny smak, szum w uszach, drgawki. Bradykardia, hipotensja.",
-    uw:"Lidokaina i amiodaron to albo–albo, nie jedno po drugim. W bolusie podawaj powoli (2–3 min u pacjenta z tętnem).",
+    uw:"Lidokainę i amiodaron stosuje się zamiennie, nie jeden po drugim. W bolusie podawaj powoli (2–3 min u pacjenta z tętnem).",
     scen:"Migotanie komór po trzeciej defibrylacji, a w zestawie nie ma amiodaronu.",
     dq:{ q:"Dawki lidokainy w NZK zamiast amiodaronu?", a:"100 mg po 3. defibrylacji, 50 mg po 5.", d:["300 mg po 3., 150 mg po 5.","10 mg po każdej defibrylacji","1 g we wlewie"] },
     pq:{ q:"Pierwsze objawy toksyczności lidokainy to:", a:"drętwienie wokół ust, metaliczny smak, szum w uszach", d:["suchy kaszel i obrzęk warg","szpilkowate źrenice i zaparcie","żółtaczka i świąd skóry"], w:"Leki znieczulające miejscowo najpierw dają objawy z OUN — od drętwienia ust po drgawki — a dopiero potem zaburzenia rytmu." } },
@@ -413,7 +413,7 @@ const DZIALY = [
   { n:"Metoprolol", lat:"Metoprololi tartras", post:"roztwór do wstrzykiwań", kl:"β-adrenolityk kardioselektywny (β1)",
     kiedy:"Tachyarytmie nadkomorowe, kontrola częstości w AF", klucz:"5 mg iv powoli (1–2 mg/min), powtarzać co 5 min", droga:"iv",
     mech:"Wybiórczo blokuje receptory β1 w sercu: zwalnia rytm zatokowy i przewodzenie w węźle AV, zmniejsza siłę skurczu i zużycie tlenu przez mięsień sercowy.",
-    obraz:"Ogranicznik prędkości dla serca: wolniej, słabiej, oszczędniej — mniej tlenu spala.",
+    obraz:"Ogranicza wpływ układu współczulnego na serce: zwalnia jego rytm, zmniejsza siłę skurczu i przez to obniża zapotrzebowanie mięśnia sercowego na tlen.",
     wsk:["Częstoskurcz nadkomorowy, kontrola częstości komór w migotaniu przedsionków","Świeży zawał serca z tachykardią i nadciśnieniem (bez cech niewydolności serca)"],
     dor:["Tachyarytmie: 5 mg iv powoli (1–2 mg/min), można powtarzać co 5 min — łącznie maks. 20 mg.","Świeży zawał: 3 dawki po 5 mg co 2 min (jeśli pacjent toleruje)."],
     dz:"W ZRM nie stosuje się rutynowo.",
@@ -427,7 +427,7 @@ const DZIALY = [
   { n:"Siarczan magnezu", lat:"Magnesii sulfas", post:"roztwór do wstrzykiwań", kl:"Elektrolit — fizjologiczny antagonista wapnia",
     kiedy:"Torsade de pointes, rzucawka, ciężka astma", klucz:"2 g iv w 10 min · rzucawka 4 g", droga:"iv, im",
     mech:"Stabilizuje błony komórkowe i hamuje napływ wapnia: skraca odstęp QT, rozkurcza mięśnie gładkie oskrzeli i macicy, tłumi przewodnictwo nerwowo-mięśniowe.",
-    obraz:"Naturalny uspokajacz błon: serce, oskrzela, macica i neurony przestają iskrzyć.",
+    obraz:"Jest fizjologicznym antagonistą wapnia: stabilizuje błony komórkowe i zmniejsza ich pobudliwość. Dlatego działa zarówno na komory serca, jak i na mięśnie gładkie oskrzeli i macicy oraz na neurony.",
     wsk:["Częstoskurcz wielokształtny typu torsade de pointes","Stan przedrzucawkowy i rzucawka","Ciężki napad astmy nieustępujący po salbutamolu","Hipomagnezemia"],
     dor:["Torsade de pointes: 2 g iv w ok. 10 min (w NZK szybciej).","Rzucawka: 4 g iv w 5–15 min, potem 1–2 g/godz. we wlewie.","Ciężka astma: 2 g iv w 20 min.","Ampułka 20%: 10 ml = 2 g."],
     dz:"25–50 mg/kg iv (maks. 2 g).",
@@ -440,19 +440,19 @@ const DZIALY = [
   ]},
 
 { id:"ozw", nr:3, t:"OZW — leki przeciwzakrzepowe", ik:"🩸", kol:"#F472B6",
-  opis:"Skrzep w tętnicy wieńcowej: jeden lek od ręki, trzy po telefonie do lekarza, piąty przed pracownią hemodynamiki.",
+  opis:"Leczenie przeciwpłytkowe i przeciwkrzepliwe w ostrym zespole wieńcowym: jeden lek podawany samodzielnie, trzy po konsultacji z lekarzem, jeden przed przezskórną interwencją wieńcową.",
   siatka:[
-    ["Od razu, bez konsultacji", "ASA 150–300 mg do rozgryzienia — każdemu z podejrzeniem OZW bez przeciwwskazań."],
+    ["Bez konsultacji", "ASA 150–300 mg do rozgryzienia — każdemu z podejrzeniem OZW bez przeciwwskazań."],
     ["Po teletransmisji EKG", "Lekarz wybiera JEDEN inhibitor P2Y12: tikagrelor 180 mg, prasugrel 60 mg albo klopidogrel 600 mg."],
-    ["W drodze na hemodynamikę", "Heparyna 70–100 j.m./kg iv."],
-    ["Dwa przyciski alarmu w płytce", "ASA wyłącza tromboksan, inhibitor P2Y12 wyłącza ADP. Heparyna działa obok — na osoczową kaskadę krzepnięcia."],
-    ["Reszta zestawu OZW", "Nitrogliceryna (dział 4), morfina przy silnym bólu (dział 6), tlen tylko przy SpO₂ poniżej 90%."]
+    ["Przed PCI", "Heparyna 70–100 j.m./kg iv."],
+    ["Dwa szlaki aktywacji płytek", "ASA blokuje szlak tromboksanu, inhibitor P2Y12 — szlak ADP. Heparyna działa niezależnie, na osoczowe czynniki krzepnięcia."],
+    ["Pozostałe leki w OZW", "Nitrogliceryna (dział 4), morfina przy silnym bólu (dział 6), tlen tylko przy SpO₂ poniżej 90%."]
   ],
   leki:[
   { n:"Kwas acetylosalicylowy (ASA)", lat:"Acidum acetylsalicylicum", post:"tabletki", kl:"Lek przeciwpłytkowy z grupy NLPZ (salicylan)",
     kiedy:"Podejrzenie zawału / OZW — pierwszy lek", klucz:"150–300 mg po, rozgryźć", droga:"doustnie",
     mech:"Nieodwracalnie hamuje cyklooksygenazę COX-1 w płytkach krwi, przez co nie powstaje tromboksan A₂ — płytka traci zdolność zlepiania się na całe swoje życie (7–10 dni).",
-    obraz:"Jedna tabletka wyłącza klej w płytkach na resztę ich życia.",
+    obraz:"Jedna dawka trwale unieczynnia enzym w płytkach krwi. Płytka nie ma jądra komórkowego i nie może odtworzyć enzymu, więc efekt utrzymuje się przez cały okres jej życia, czyli 7–10 dni.",
     wsk:["Ostry zespół wieńcowy: zawał serca, niestabilna dławica","Profilaktyka wtórna zawału i udaru niedokrwiennego","Ból, gorączka, stany zapalne (poza ZRM)"],
     dor:["OZW: 150–300 mg doustnie, tabletka niepowlekana do rozgryzienia (podręcznik: 160–325 mg)."],
     dz:"Nie podawać dzieciom do 12 lat — ryzyko zespołu Reye'a.",
@@ -466,7 +466,7 @@ const DZIALY = [
   { n:"Klopidogrel", lat:"Clopidogrelum", post:"tabletki", kl:"Lek przeciwpłytkowy — inhibitor P2Y12 (tienopirydyna, prolek)", tag:"ekg",
     kiedy:"OZW po teletransmisji — zwłaszcza u chorego na antykoagulancie", klucz:"dawka nasycająca 300–600 mg po", droga:"doustnie",
     mech:"Jego czynny metabolit nieodwracalnie zmienia receptor P2Y12 na płytce, więc ADP nie może się do niego przyłączyć i uruchomić agregacji. To prolek aktywowany w wątrobie dwuetapowo, dlatego działa z opóźnieniem, a u części osób słabo.",
-    obraz:"ASA wyłącza w płytce jeden przycisk alarmu (tromboksan), ten lek drugi (ADP). Razem dają podwójną terapię przeciwpłytkową.",
+    obraz:"Agregację płytek uruchamiają dwa niezależne sygnały: tromboksan i ADP. ASA blokuje pierwszy, ten lek drugi, dlatego w ostrym zespole wieńcowym łączy się je w podwójną terapię przeciwpłytkową.",
     wsk:["Ostry zespół wieńcowy — razem z ASA","Zawał serca, udar niedokrwienny, choroba tętnic obwodowych"],
     dor:["Dawka nasycająca: 300 mg (podręcznik); przed pierwotną PCI zwykle 600 mg. Dalej 75 mg raz dziennie."],
     dz:"Nie stosuje się.",
@@ -480,7 +480,7 @@ const DZIALY = [
   { n:"Tikagrelor", lat:"Ticagrelor", post:"tabletki", kl:"Lek przeciwpłytkowy — odwracalny inhibitor P2Y12", tag:"ekg",
     kiedy:"OZW po teletransmisji — szybki, odwracalny inhibitor P2Y12", klucz:"dawka nasycająca 180 mg po", droga:"doustnie",
     mech:"Wybiórczo i odwracalnie blokuje receptor P2Y12 na płytkach. Nie wymaga aktywacji w wątrobie, więc działa szybko; dodatkowo zwiększa miejscowe stężenie adenozyny.",
-    obraz:"Działa od ręki — nie czeka na wątrobę i sam odczepia się od receptora.",
+    obraz:"Blokuje ten sam receptor co klopidogrel, ale nie wymaga aktywacji w wątrobie i wiąże się odwracalnie. Działa więc szybciej i bardziej przewidywalnie, a jego efekt szybciej ustępuje po odstawieniu.",
     wsk:["Ostry zespół wieńcowy — razem z ASA","Stan po zawale u chorych wysokiego ryzyka"],
     dor:["Dawka nasycająca 180 mg doustnie (2 tabletki po 90 mg), dalej 90 mg dwa razy dziennie."],
     dz:"Nie stosuje się.",
@@ -494,7 +494,7 @@ const DZIALY = [
   { n:"Prasugrel", lat:"Prasugrel", post:"tabletki", kl:"Lek przeciwpłytkowy — inhibitor P2Y12 (tienopirydyna III generacji)", tag:"ekg nowy",
     kiedy:"OZW kierowany na PCI — po teletransmisji, bez udaru w wywiadzie", klucz:"dawka nasycająca 60 mg po", droga:"doustnie",
     mech:"Czynny metabolit trwale wiąże się z receptorem P2Y12 płytek. Aktywuje się szybciej i pełniej niż klopidogrel, dlatego hamuje płytki mocniej.",
-    obraz:"Mocniejszy brat klopidogrelu: szybszy, silniejszy — i mocniej krwawi.",
+    obraz:"Należy do tej samej grupy chemicznej co klopidogrel, ale aktywuje się szybciej i pełniej. Silniejsze hamowanie płytek oznacza większe ryzyko krwawienia, dlatego stosuje się go u starannie wybranych pacjentów.",
     wsk:["Ostry zespół wieńcowy leczony przezskórną interwencją wieńcową (PCI)"],
     dor:["Dawka nasycająca 60 mg doustnie, dalej 10 mg raz dziennie."],
     dz:"Nie stosuje się.",
@@ -508,32 +508,32 @@ const DZIALY = [
   { n:"Heparyna niefrakcjonowana", lat:"Heparinum natricum", post:"roztwór do wstrzykiwań", kl:"Lek przeciwkrzepliwy (antykoagulant)",
     kiedy:"OZW przed PCI, zatorowość płucna", klucz:"70–100 j.m./kg iv (zwykle 5000 j.m.)", droga:"iv",
     mech:"Aktywuje antytrombinę, która unieczynnia trombinę i czynnik Xa — hamuje osoczową kaskadę krzepnięcia.",
-    obraz:"Nie rozpuszcza skrzepu — zaciąga hamulec na kaskadzie krzepnięcia, żeby skrzep nie rósł. Antytrombina to ochroniarz, a ten lek daje mu doping.",
+    obraz:"Nie rozpuszcza istniejącego skrzepu. Wzmacnia działanie antytrombiny, naturalnego inhibitora krzepnięcia, i w ten sposób zatrzymuje dalszy wzrost skrzepu.",
     wsk:["Świeży zawał serca i niestabilna dławica, zwłaszcza przed angioplastyką","Zatorowość płucna, żylna choroba zakrzepowo-zatorowa"],
     dor:["OZW przed PCI: bolus 70–100 j.m./kg iv — w praktyce zwykle 5000 j.m.","Leczniczo w zatorowości: 5000 j.m. w bolusie, potem 18 j.m./kg/godz. we wlewie."],
     dz:"Dawka nasycająca 75 j.m./kg iv — wyłącznie na zlecenie lekarza.",
     pw:"Czynne krwawienie, skaza krwotoczna, małopłytkowość poheparynowa (HIT) w wywiadzie, świeży uraz głowy lub udar krwotoczny.",
     dn:"Krwawienia, małopłytkowość poheparynowa, hiperkaliemia; przy długim stosowaniu osteoporoza.",
-    uw:"Nie podawaj domięśniowo — robią się krwiaki. Odtrutką jest siarczan protaminy.",
+    uw:"Nie podawaj domięśniowo — powstają krwiaki. Odtrutką jest siarczan protaminy.",
     scen:"STEMI, transport prosto do pracowni hemodynamiki. Ośrodek prosi o dożylny bolus antykoagulantu 70–100 j.m./kg.",
     dq:{ q:"Bolus heparyny w OZW przed PCI?", a:"70–100 j.m./kg iv, zwykle 5000 j.m.", d:["500 j.m. domięśniowo","50 000 j.m. iv","5 j.m./kg podskórnie"] },
     pq:{ q:"Odtrutką na heparynę jest:", a:"siarczan protaminy", d:["witamina K","nalokson","flumazenil"], w:"Witamina K odwraca działanie acenokumarolu i warfaryny, nalokson — opioidów, flumazenil — benzodiazepin." } }
   ]},
 
 { id:"rr", nr:4, t:"Ciśnienie i obrzęk płuc", ik:"🫀", kol:"#FACC15",
-  opis:"Rozszerzyć naczynia albo odlać wodę — pięć sposobów na odciążenie serca.",
+  opis:"Leki obniżające ciśnienie tętnicze i odciążające serce: rozszerzające naczynia i moczopędne.",
   siatka:[
-    ["Wysokie RR, narządy nie cierpią", "Kaptopryl 12,5–25 mg i spokój — ciśnienie ma spadać powoli, o ok. 25% w pierwszych godzinach."],
-    ["Wysokie RR i cierpi narząd", "Urapidyl iv — działa w minuty, da się miareczkować."],
-    ["Obrzęk płuc", "Pozycja siedząca i tlen → nitrogliceryna (odciąża w minutę) → furosemid (odwadnia w pół godziny)."],
-    ["Ból wieńcowy", "Nitrogliceryna pod język. Monoazotan izosorbidu to profilaktyka, nie lek na napad."],
-    ["Zanim podasz azotan", "RR powyżej 90 mmHg, brak sildenafilu w ostatniej dobie, zawał nie obejmuje prawej komory."]
+    ["Nadciśnienie bez powikłań narządowych", "Kaptopryl 12,5–25 mg. Ciśnienie obniża się stopniowo, o ok. 25% w pierwszych godzinach."],
+    ["Nadciśnienie z ostrym uszkodzeniem narządów", "Urapidyl dożylnie — działa w ciągu minut i można go miareczkować."],
+    ["Obrzęk płuc", "Pozycja siedząca i tlen → nitrogliceryna (działa w ciągu minut) → furosemid (diureza w ciągu ok. 30 minut)."],
+    ["Ból wieńcowy", "Nitrogliceryna podjęzykowo. Monoazotan izosorbidu służy do profilaktyki, nie do przerywania napadu."],
+    ["Przed podaniem azotanu", "Skurczowe RR powyżej 90 mmHg, brak inhibitora PDE-5 w ostatniej dobie, wykluczony zawał prawej komory."]
   ],
   leki:[
   { n:"Nitrogliceryna", lat:"Glyceroli trinitras", post:"tabletki, aerozol podjęzykowy", kl:"Azotan — lek rozszerzający naczynia",
     kiedy:"Ból wieńcowy, obrzęk płuc z wysokim ciśnieniem", klucz:"0,4 mg s.l. co 5 min, do 3 dawek", droga:"podjęzykowo",
     mech:"Uwalnia tlenek azotu, który rozkurcza mięśniówkę naczyń — głównie żylnych. Do serca wraca mniej krwi (spada obciążenie wstępne), więc mięsień zużywa mniej tlenu; rozszerza też tętnice wieńcowe. Podany pod język działa w 1–2 minuty.",
-    obraz:"Otwiera żylny zbiornik retencyjny: krew zostaje na obwodzie, serce dostaje jej mniej do przepompowania i ma lżej.",
+    obraz:"Rozszerza głównie żyły, które pełnią funkcję zbiornika krwi. Więcej krwi pozostaje na obwodzie, do serca wraca jej mniej, a mięsień sercowy wykonuje mniejszą pracę i zużywa mniej tlenu.",
     wsk:["Stabilna i niestabilna dławica piersiowa, zawał serca","Obrzęk płuc z wysokim ciśnieniem tętniczym","Przełom nadciśnieniowy"],
     dor:["Aerozol: 0,4 mg (1 dawka) pod język, w razie potrzeby 0,8 mg; można powtarzać co 5 min — maks. 3 dawki w 15 min.","Tabletki podjęzykowe 0,5 mg."],
     dz:"Nie stosuje się.",
@@ -547,7 +547,7 @@ const DZIALY = [
   { n:"Monoazotan izosorbidu", lat:"Isosorbidi mononitras", post:"tabletki", kl:"Azotan długo działający",
     kiedy:"Zapobieganie napadom dławicy", klucz:"40–60 mg/d po (maks. 100 mg/d)", droga:"doustnie",
     mech:"Uwalnia tlenek azotu i rozszerza naczynia żylne oraz — słabiej — tętnicze. Podany doustnie zaczyna działać wolno, za to przez wiele godzin.",
-    obraz:"Nitrogliceryna to sprint, ten azotan to maraton.",
+    obraz:"Ma ten sam mechanizm co nitrogliceryna, ale inną kinetykę: zaczyna działać wolno i działa przez wiele godzin. Służy do zapobiegania napadom dławicy, a nie do ich przerywania.",
     wsk:["Zapobieganie napadom dławicy piersiowej","Przewlekłe leczenie choroby wieńcowej"],
     dor:["Doustnie 40–60 mg na dobę, maksymalnie 100 mg na dobę."],
     dz:"Nie stosuje się.",
@@ -561,13 +561,13 @@ const DZIALY = [
   { n:"Kaptopryl", lat:"Captoprilum", post:"tabletki", kl:"Inhibitor konwertazy angiotensyny (ACE-I)",
     kiedy:"Doraźne obniżenie wysokiego ciśnienia", klucz:"12,5–25 mg s.l. lub po", droga:"podjęzykowo, doustnie",
     mech:"Hamuje enzym zamieniający angiotensynę I w angiotensynę II — znika silny bodziec obkurczający naczynia i spada wydzielanie aldosteronu. Przy okazji gromadzi się bradykinina.",
-    obraz:"Zakręca kurek z angiotensyną II, czyli zaciskaczem naczyń. Efekt uboczny rozlanej bradykininy: suchy kaszel, a rzadko obrzęk naczynioruchowy.",
+    obraz:"Hamuje enzym wytwarzający angiotensynę II, jeden z najsilniejszych czynników obkurczających naczynia. Ten sam enzym rozkłada bradykininę; jej gromadzenie się wyjaśnia suchy kaszel i obrzęk naczynioruchowy.",
     wsk:["Doraźne obniżenie ciśnienia tętniczego (stan pilny, bez ostrych powikłań narządowych)","Przewlekle: nadciśnienie, niewydolność serca"],
     dor:["Doraźnie 12,5–25 mg podjęzykowo lub doustnie; początek działania po 15–30 min."],
     dz:"W ZRM nie stosuje się.",
     pw:"Ciąża i karmienie piersią, obrzęk naczynioruchowy w wywiadzie, hiperkaliemia, hipotensja, obustronne zwężenie tętnic nerkowych, ostra lub schyłkowa niewydolność nerek.",
     dn:"Hipotensja i omdlenie po pierwszej dawce, suchy kaszel, obrzęk naczynioruchowy, hiperkaliemia, zawroty głowy.",
-    uw:"Ciśnienie obniżaj powoli. U kobiety w wieku rozrodczym zapytaj o ciążę. Przy podejrzeniu udaru nie zbijaj ciśnienia na własną rękę.",
+    uw:"Ciśnienie obniżaj powoli. U kobiety w wieku rozrodczym zapytaj o ciążę. Przy podejrzeniu udaru nie obniżaj ciśnienia bez konsultacji z lekarzem.",
     scen:"RR 200/110, ból głowy; bez bólu w klatce piersiowej, duszności i objawów neurologicznych, pacjentka nie jest w ciąży. Jaki lek w tabletce z grupy inhibitorów konwertazy?",
     dq:{ q:"Doraźna dawka kaptoprylu?", a:"12,5–25 mg podjęzykowo lub doustnie", d:["125–250 mg doustnie","1,25 mg dożylnie","0,4 mg w aerozolu"] },
     pq:{ q:"U kogo kaptopryl jest bezwzględnie przeciwwskazany?", a:"U kobiety w ciąży", d:["U chorego na cukrzycę","U pacjenta po zawale serca","U pacjenta z niewydolnością serca"], w:"Inhibitory ACE uszkadzają płód. Cukrzyca, stan po zawale i niewydolność serca to wręcz wskazania do ich przewlekłego stosowania." } },
@@ -575,7 +575,7 @@ const DZIALY = [
   { n:"Urapidyl", lat:"Urapidilum", post:"roztwór do wstrzykiwań", kl:"α1-adrenolityk o działaniu obwodowym i ośrodkowym",
     kiedy:"Przełom nadciśnieniowy — stan nagły", klucz:"10–50 mg iv powoli, ocena po 5 min", droga:"iv",
     mech:"Blokuje receptory α1 w naczyniach (spada opór obwodowy), a jednocześnie pobudza ośrodkowe receptory 5-HT1A, co tłumi odruchowe przyspieszenie serca.",
-    obraz:"Rozluźnia zaciśnięte tętnice i od razu ucisza ośrodek, który chciałby w odpowiedzi rozpędzić serce.",
+    obraz:"Rozszerza tętnice przez blokadę receptorów α1, a jednocześnie działa na ośrodki w mózgu, które w odpowiedzi na spadek ciśnienia przyspieszyłyby serce. Dzięki temu nie wywołuje odruchowej tachykardii.",
     wsk:["Przełom nadciśnieniowy z ostrym uszkodzeniem narządów","Ciężkie nadciśnienie oporne na inne leki","Kontrolowane obniżanie ciśnienia"],
     dor:["Bolus 10–50 mg iv powoli; ocena ciśnienia po 5 min i w razie potrzeby powtórzenie — łącznie do 100 mg.","Wlew: 2 mg/min, po uzyskaniu efektu podtrzymanie ok. 9 mg/godz."],
     dz:"Nie stosuje się rutynowo.",
@@ -589,32 +589,32 @@ const DZIALY = [
   { n:"Furosemid", lat:"Furosemidum", post:"roztwór do wstrzykiwań", kl:"Diuretyk pętlowy",
     kiedy:"Obrzęk płuc, przewodnienie w niewydolności serca", klucz:"20–40 mg iv powoli", droga:"iv, im",
     mech:"Hamuje transport jonów sodu, potasu i chloru w ramieniu wstępującym pętli Henlego — z moczem ucieka dużo wody i elektrolitów. Podany dożylnie dodatkowo szybko rozszerza żyły.",
-    obraz:"Wyciąga korek z wanny: woda z sodem i potasem ucieka nerkami, płuca przestają tonąć.",
+    obraz:"Blokuje wchłanianie zwrotne sodu w pętli Henlego, a wraz z sodem organizm traci wodę. W obrzęku płuc zmniejsza objętość płynu w krążeniu, a podany dożylnie dodatkowo szybko rozszerza żyły.",
     wsk:["Obrzęk płuc","Obrzęki w niewydolności serca, marskości, niewydolności nerek","Przełom nadciśnieniowy, obrzęk mózgu, diureza wymuszona w zatruciach"],
     dor:["Początkowo 20–40 mg iv powoli; nie szybciej niż 4 mg/min.","W obrzęku płuc dawka początkowa może być większa — podręcznik dopuszcza bolus do 100 mg."],
     dz:"0,5–1 mg/kg iv.",
     pw:"Hipowolemia i odwodnienie, hipotensja, bezmocz, ciężka hipokaliemia i hiponatremia, nadwrażliwość na sulfonamidy.",
     dn:"Hipokaliemia, hiponatremia, odwodnienie i spadek ciśnienia, upośledzenie słuchu przy szybkim podaniu, wzrost glikemii i kwasu moczowego.",
-    uw:"Diureza rusza po ok. 5 min, szczyt po 30 min. Pacjent biorący furosemid przewlekle potrzebuje większej dawki.",
+    uw:"Diureza zaczyna się po ok. 5 min, szczyt następuje po 30 min. Pacjent biorący furosemid przewlekle potrzebuje większej dawki.",
     scen:"Znany pacjent z niewydolnością serca: obrzęki do kolan, narastająca duszność, rzężenia u podstawy płuc, RR 140/85. Co go odwodni?",
     dq:{ q:"Początkowa dawka furosemidu dożylnie?", a:"20–40 mg powoli", d:["200–400 mg w szybkim bolusie","2–4 mg domięśniowo","1 g doustnie"] },
-    pq:{ q:"Jakiego zaburzenia elektrolitowego spodziewasz się po furosemidzie?", a:"Hipokaliemii", d:["Hiperkaliemii","Hiperkalcemii","Hipermagnezemii"], w:"Diuretyki pętlowe wypłukują potas, sód, magnez i wapń. Potas zatrzymują natomiast spironolakton i inhibitory ACE." } }
+    pq:{ q:"Jakiego zaburzenia elektrolitowego spodziewasz się po furosemidzie?", a:"Hipokaliemii", d:["Hiperkaliemii","Hiperkalcemii","Hipermagnezemii"], w:"Diuretyki pętlowe zwiększają wydalanie potasu, sodu, magnezu i wapnia. Potas zatrzymują natomiast spironolakton i inhibitory ACE." } }
   ]},
 
 { id:"odd", nr:5, t:"Oddech i alergia", ik:"🫁", kol:"#38BDF8",
-  opis:"Otworzyć oskrzela, zgasić obrzęk, uspokoić histaminę.",
+  opis:"Leki rozszerzające oskrzela, przeciwzapalne i przeciwhistaminowe.",
   siatka:[
-    ["Anafilaksja", "1. adrenalina im (dział 1) → 2. tlen i płyny → 3. dopiero teraz klemastyna i hydrokortyzon."],
+    ["Anafilaksja", "1. adrenalina domięśniowo (dział 1) → 2. tlen i płyny → 3. dopiero następnie klemastyna i hydrokortyzon."],
     ["Astma, POChP", "Salbutamol w nebulizacji, powtarzany → steryd ogólnie (hydrokortyzon) → w ciężkim napadzie magnez (dział 2)."],
     ["Krup", "Budezonid 2 mg w nebulizacji albo deksametazon 0,15–0,6 mg/kg."],
-    ["Trzy sterydy, trzy prędkości", "Budezonid — miejscowo, wziewnie. Hydrokortyzon — krótki, zatrzymuje sód. Deksametazon — 30 razy silniejszy, działa 2–3 doby."],
-    ["Żaden steryd nie działa od razu", "Efekt po kilku godzinach. Na teraz jest adrenalina i salbutamol."]
+    ["Trzy glikokortykosteroidy", "Budezonid — działanie miejscowe, wziewnie. Hydrokortyzon — krótko działający, zatrzymuje sód. Deksametazon — ok. 30 razy silniejszy, działa 2–3 doby."],
+    ["Opóźnione działanie sterydów", "Efekt pojawia się po kilku godzinach. W stanie ostrym działają adrenalina i salbutamol."]
   ],
   leki:[
   { n:"Salbutamol", lat:"Salbutamolum", post:"roztwór do wstrzykiwań, roztwór do nebulizacji", kl:"β2-mimetyk krótko działający (SABA)",
     kiedy:"Skurcz oskrzeli: astma, POChP", klucz:"nebulizacja 2,5–5 mg, powtarzać", droga:"nebulizacja, iv, im, sc",
     mech:"Pobudza receptory β2 w mięśniach gładkich oskrzeli — rozkurcza je w kilka minut. Wpycha też potas z krwi do komórek.",
-    obraz:"Klucz do zamka β2: oskrzela otwierają się jak rozluźniona pięść. Po drodze zagania potas do komórek.",
+    obraz:"Pobudza receptory β2 w mięśniach gładkich oskrzeli, które w napadzie astmy są obkurczone. Oskrzela rozkurczają się w ciągu kilku minut; ubocznie potas przechodzi z krwi do komórek.",
     wsk:["Napad astmy, zaostrzenie POChP","Skurcz oskrzeli w anafilaksji","Hiperkaliemia — pomocniczo"],
     dor:["Nebulizacja: 2,5–5 mg przez ok. 10 min; w ciężkim napadzie powtarzaj co 15–20 min.","Pozajelitowo w stanie astmatycznym: 0,25–0,5 mg iv/im/sc w ciągu 5 min.","Hiperkaliemia: 10–20 mg w nebulizacji."],
     dz:"Nebulizacja: 2,5 mg do 5. roku życia, 5 mg u starszych.",
@@ -628,7 +628,7 @@ const DZIALY = [
   { n:"Budezonid", lat:"Budesonidum", post:"zawiesina do nebulizacji", kl:"Glikokortykosteroid wziewny",
     kiedy:"Krup, zaostrzenie astmy", klucz:"krup: 2 mg w nebulizacji", droga:"nebulizacja",
     mech:"Działa silnie przeciwzapalnie i przeciwalergicznie w miejscu podania: zmniejsza obrzęk błony śluzowej, napływ komórek zapalnych i wydzielanie histaminy.",
-    obraz:"Gaśnica pianowa na obrzęk krtani i oskrzeli — działa tam, gdzie ją wdychasz.",
+    obraz:"Działa przeciwzapalnie w miejscu podania, czyli na błonie śluzowej krtani i oskrzeli. Zmniejsza obrzęk, który w krupie zwęża drogi oddechowe, przy niewielkim wpływie na cały organizm.",
     wsk:["Zespół krupu (podgłośniowe zapalenie krtani)","Astma oskrzelowa i POChP — zaostrzenia, pomocniczo"],
     dor:["Zaostrzenie astmy lub POChP: 1–2 mg w nebulizacji."],
     dz:"Krup: 2 mg w nebulizacji jednorazowo. Zaostrzenie astmy: 0,5–1 mg.",
@@ -642,7 +642,7 @@ const DZIALY = [
   { n:"Hydrokortyzon", lat:"Hydrocortisonum", post:"roztwór do wstrzykiwań", kl:"Glikokortykosteroid krótko działający",
     kiedy:"Anafilaksja (po adrenalinie), ciężka astma, przełom nadnerczowy", klucz:"100–200 mg iv", droga:"iv, im",
     mech:"Wnika do komórki i zmienia odczyt genów: hamuje wytwarzanie mediatorów zapalenia i reakcji alergicznej. Ma też działanie mineralokortykoidowe — zatrzymuje sód i wodę.",
-    obraz:"Strażak, który dojeżdża po kilku godzinach: nie ugasi pożaru teraz, ale nie pozwoli mu wybuchnąć drugi raz.",
+    obraz:"Działa przez zmianę odczytu genów w komórkach, dlatego efekt pojawia się po kilku godzinach. Nie przerywa ostrej reakcji, ale zapobiega jej nawrotowi i wspiera krążenie.",
     wsk:["Wstrząs anafilaktyczny i ciężkie reakcje alergiczne — po adrenalinie","Ciężki napad astmy, zaostrzenie POChP","Ostra niewydolność kory nadnerczy"],
     dor:["W stanach zagrożenia życia 100–500 mg iv we wstrzyknięciu trwającym co najmniej 30 s; najczęściej 100–200 mg."],
     dz:"Ok. 4–5 mg/kg iv (podręcznik: 4–10 mg/kg na dobę zależnie od wieku).",
@@ -656,13 +656,13 @@ const DZIALY = [
   { n:"Deksametazon", lat:"Dexamethasoni phosphas", post:"roztwór do wstrzykiwań", kl:"Glikokortykosteroid długo działający",
     kiedy:"Krup, obrzęk mózgu wokół guza, ciężka alergia", klucz:"4–8 mg iv/im · krup 0,15–0,6 mg/kg", droga:"iv, im",
     mech:"Syntetyczny steryd o działaniu przeciwzapalnym ok. 30 razy silniejszym niż hydrokortyzon i praktycznie bez wpływu na gospodarkę sodem. Jedna dawka działa 2–3 doby.",
-    obraz:"Hydrokortyzon razy trzydzieści — bez zatrzymywania wody i na trzy doby.",
+    obraz:"Działa przeciwzapalnie około 30 razy silniej niż hydrokortyzon, a jedna dawka utrzymuje się przez 2–3 doby. Praktycznie nie zatrzymuje sodu i wody.",
     wsk:["Zespół krupu","Obrzęk mózgu (wokół guza)","Wstrząs, ciężkie reakcje alergiczne, zaostrzenie astmy"],
     dor:["Jednorazowo 4–8 mg iv lub im."],
     dz:"Krup: 0,15–0,6 mg/kg jednorazowo (maks. ok. 8–10 mg).",
     pw:"W stanie nagłym brak bezwzględnych. Ostrożnie: cukrzyca, choroba wrzodowa, układowe zakażenia.",
     dn:"Wzrost glikemii, pobudzenie i bezsenność, pieczenie krocza przy szybkim wstrzyknięciu dożylnym.",
-    uw:"Dzięki długiemu działaniu jedna dawka zwykle zamyka temat krupu.",
+    uw:"Dzięki długiemu działaniu jedna dawka zwykle wystarcza w leczeniu krupu.",
     scen:"Pacjent ze znanym guzem mózgu: narastający ból głowy, wymioty, senność. Potrzebny steryd — najsilniejszy z listy i niezatrzymujący sodu.",
     dq:{ q:"Dawka deksametazonu w krupie?", a:"0,15–0,6 mg/kg jednorazowo", d:["15–60 mg/kg","0,0015 mg/kg","100 mg niezależnie od masy ciała"] },
     pq:{ q:"W porównaniu z hydrokortyzonem deksametazon:", a:"jest ok. 30 razy silniejszy przeciwzapalnie i działa dłużej", d:["jest słabszy i działa krócej","silniej zatrzymuje sód i wodę","działa tylko wziewnie"], w:"Dlatego 4–8 mg deksametazonu odpowiada mniej więcej 100–200 mg hydrokortyzonu." } },
@@ -670,7 +670,7 @@ const DZIALY = [
   { n:"Klemastyna", lat:"Clemastinum", post:"roztwór do wstrzykiwań", kl:"Lek przeciwhistaminowy I generacji (H1)",
     kiedy:"Pokrzywka, świąd; pomocniczo w anafilaksji", klucz:"2 mg iv powoli lub im", droga:"iv, im",
     mech:"Blokuje receptory histaminowe H1: hamuje rozszerzenie i przeciekanie naczyń włosowatych, świąd i skurcz mięśni gładkich. Przenika do mózgu (senność) i działa cholinolitycznie.",
-    obraz:"Zasłania histaminie dziurkę od klucza: świąd i bąble gasną. Ciśnienia i obrzęku krtani jednak nie uratuje — to robota adrenaliny.",
+    obraz:"Blokuje receptory, przez które histamina wywołuje świąd, bąble i przeciekanie naczyń. Łagodzi objawy skórne, ale nie odwraca spadku ciśnienia ani obrzęku krtani w anafilaksji.",
     wsk:["Pokrzywka, świąd, alergiczne zapalenie błony śluzowej nosa","Obrzęk naczynioruchowy","Wstrząs anafilaktyczny — pomocniczo"],
     dor:["2 mg iv lub im (do 2 razy na dobę). Przed podaniem iv rozcieńcz w 10 ml 0,9% NaCl lub 5% glukozy i wstrzykuj 2–3 min."],
     dz:"0,025 mg/kg na dobę im, w 2 dawkach. Nie podawać w 1. roku życia.",
@@ -685,26 +685,26 @@ const DZIALY = [
 
 // ═══════════════════════ DANE: DZIAŁY 6–10 ═══════════════════════
 DZIALY.push(
-{ id:"bol", nr:6, t:"Silny ból — opioidy i spółka", ik:"💊", kol:"#A78BFA",
-  opis:"Od paracetamolu po fentanyl, z odtrutką i lekiem na nudności w pakiecie.",
+{ id:"bol", nr:6, t:"Silny ból — opioidy i leki wspomagające", ik:"💊", kol:"#A78BFA",
+  opis:"Leki przeciwbólowe od paracetamolu po opioidy, wraz z odtrutką i lekiem przeciwwymiotnym.",
   siatka:[
-    ["Baza", "Paracetamol 1 g — prawie każdemu, sumuje się z resztą."],
-    ["Dokładka", "NLPZ albo metamizol (dział 7), jeśli nie ma przeciwwskazań."],
-    ["Ból 7–10/10", "Opioid miareczkowany: fentanyl — szybki, krótki, łagodny dla ciśnienia; morfina — wolniejsza, na dłużej."],
-    ["Bezpiecznik", "Po każdej dawce opioidu liczysz oddechy. Nalokson leży pod ręką."],
-    ["Typowy efekt uboczny", "Nudności po opioidzie → metoklopramid 10 mg."]
+    ["Podstawa", "Paracetamol 1 g — u większości pacjentów; nasila działanie pozostałych leków przeciwbólowych."],
+    ["Leczenie uzupełniające", "NLPZ albo metamizol (dział 7), jeśli nie ma przeciwwskazań."],
+    ["Ból 7–10/10", "Opioid miareczkowany: fentanyl — szybki początek, krótkie działanie, mniejszy wpływ na ciśnienie; morfina — wolniejszy początek, dłuższe działanie."],
+    ["Monitorowanie", "Po każdej dawce opioidu oceniaj częstość oddechów. Nalokson musi być przygotowany."],
+    ["Częste działanie niepożądane", "Nudności po opioidzie → metoklopramid 10 mg."]
   ],
   leki:[
   { n:"Morfina", lat:"Morphini sulfas", post:"roztwór do wstrzykiwań", kl:"Opioidowy lek przeciwbólowy — agonista receptora µ",
     kiedy:"Silny ból: uraz, oparzenie, zawał", klucz:"2–5 mg iv co 5–10 min do efektu", droga:"iv, im, sc",
     mech:"Czysty agonista receptorów opioidowych µ w mózgu i rdzeniu kręgowym: hamuje przewodzenie bólu i zmienia jego odczuwanie. Tłumi też ośrodek oddechowy i kaszlu, uwalnia histaminę.",
-    obraz:"Wzorzec metra wśród opioidów: 10 mg tego leku to miara, do której porównuje się wszystkie inne. Wycisza ból — i ośrodek oddechowy.",
+    obraz:"Jest punktem odniesienia dla wszystkich opioidów — ich siłę działania podaje się w porównaniu z nią. Hamuje przewodzenie i odczuwanie bólu, a w tym samym mechanizmie tłumi ośrodek oddechowy.",
     wsk:["Ból o znacznym nasileniu: pourazowy, oparzeniowy","Ból w zawale serca nieustępujący po azotanach","Stany terminalne"],
     dor:["Dożylnie miareczkowo: 2–5 mg powoli, powtarzaj co 5–10 min do efektu (orientacyjnie do 0,1 mg/kg). Ampułkę 10 mg rozcieńcz do 10 ml.","Domięśniowo lub podskórnie: 10–20 mg (dawkowanie z podręcznika)."],
     dz:"0,05–0,1 mg/kg iv miareczkowo.",
     pw:"Depresja oddechowa, napad astmy, niedrożność przewodu pokarmowego, hipotensja i wstrząs, inhibitory MAO. Ostrożnie: uraz głowy, kolka żółciowa.",
     dn:"Depresja oddechowa, nudności i wymioty, spadek ciśnienia, bradykardia, sedacja, szpilkowate źrenice, zaparcie, zatrzymanie moczu, świąd.",
-    uw:"Szczyt działania po ok. 20 min — nie dokładaj dawek zbyt szybko. Działa 3–4 godziny.",
+    uw:"Szczyt działania po ok. 20 min — nie podawaj kolejnych dawek zbyt szybko. Działa 3–4 godziny.",
     scen:"Złamanie trzonu kości udowej, ból 9/10, RR 130/80. Potrzebny opioid na kilka godzin transportu, miareczkowany po 2–5 mg.",
     dq:{ q:"Jak miareczkujesz morfinę dożylnie?", a:"2–5 mg powoli, powtarzane co 5–10 min do efektu", d:["20–50 mg w bolusie","0,02 mg co godzinę","100 mg we wlewie w 5 min"] },
     pq:{ q:"Triada zatrucia opioidami to:", a:"śpiączka, szpilkowate źrenice, zwolniony oddech", d:["pobudzenie, szerokie źrenice, tachykardia","gorączka, sztywność karku, wysypka","ślinotok, biegunka, łzawienie"], w:"Szerokie źrenice z pobudzeniem to obraz sympatykomimetyków lub cholinolityków, ślinotok z biegunką — zatrucia fosforoorganicznego." } },
@@ -712,13 +712,13 @@ DZIALY.push(
   { n:"Fentanyl", lat:"Fentanylum", post:"roztwór do wstrzykiwań", kl:"Syntetyczny opioid — agonista receptora µ",
     kiedy:"Silny ból, zwłaszcza w urazie", klucz:"1–2 µg/kg iv (50–100 µg), frakcjami", droga:"iv, io, im",
     mech:"Agonista receptorów opioidowych µ, ok. 100 razy silniejszy od morfiny. Dobrze rozpuszcza się w tłuszczach, więc błyskawicznie wnika do mózgu i równie szybko z niego odpływa. Nie uwalnia histaminy.",
-    obraz:"Morfina to autobus, ten lek to motocykl: sto razy mocniejszy, na miejscu w minutę, ale szybko odjeżdża.",
+    obraz:"Jest około 100 razy silniejszy od morfiny i dobrze rozpuszcza się w tłuszczach, więc szybko przenika do mózgu i szybko go opuszcza. Działa w ciągu minut i krótko.",
     wsk:["Leczenie silnego bólu, także w zawale serca","Analgezja do zabiegów i znieczulenia"],
     dor:["Silny ból: 50 µg (0,05 mg) iv w ciągu 1 min, powtarzaj co 10 min do łącznie 200 µg; orientacyjnie 1–2 µg/kg.","Zawał serca: 100 µg iv powoli.","Ampułka 2 ml = 100 µg."],
     dz:"1–2 µg/kg iv, frakcjami.",
     pw:"Depresja oddechowa, inhibitory MAO, nadwrażliwość. Ostrożnie u osób starszych i w hipowolemii.",
     dn:"Depresja oddechowa, sztywność klatki piersiowej po szybkim podaniu dużej dawki, bradykardia, nudności.",
-    uw:"Słabiej niż morfina obniża ciśnienie, dlatego pasuje do urazu z niepewną hemodynamiką. Działa 30–60 min.",
+    uw:"Słabiej niż morfina obniża ciśnienie, dlatego jest preferowany w urazie z niestabilną hemodynamiką. Działa 30–60 min.",
     scen:"Uraz wielonarządowy, RR 95/60, ból 9/10. Potrzebny silny opioid działający w 1–2 minuty i mało wpływający na ciśnienie.",
     dq:{ q:"Dawka fentanylu dożylnie?", a:"1–2 µg/kg, u dorosłego zwykle 50–100 µg frakcjami", d:["1–2 mg/kg","50–100 mg","0,5 g"] },
     pq:{ q:"Fentanyl w porównaniu z morfiną:", a:"jest ok. 100 razy silniejszy, działa szybciej i krócej", d:["jest 10 razy słabszy i działa dłużej","jest tak samo silny, ale tylko doustny","nie powoduje depresji oddechowej"], w:"Dlatego dawkuje się go w mikrogramach. Pomylenie µg z mg to stukrotne przedawkowanie." } },
@@ -726,7 +726,7 @@ DZIALY.push(
   { n:"Nalokson", lat:"Naloxoni hydrochloridum", post:"roztwór do wstrzykiwań", kl:"Antagonista receptorów opioidowych — odtrutka",
     kiedy:"Zatrucie opioidami z depresją oddechową", klucz:"0,4 mg iv, miareczkować co 2–3 min", droga:"iv, im, sc, donosowo",
     mech:"Czysty, kompetycyjny antagonista receptorów opioidowych: wypiera opioid z receptora i w 1–2 minuty odwraca depresję oddechową, zwężenie źrenic, sedację i niedociśnienie.",
-    obraz:"Wykidajło: wyrzuca opioid z receptora i sam zajmuje jego miejsce. Tyle że po 30–60 minutach wychodzi z lokalu — a opioid wraca.",
+    obraz:"Wypiera opioid z receptora i zajmuje jego miejsce, odwracając depresję oddechową w ciągu 1–2 minut. Działa jednak krócej niż większość opioidów, więc ich działanie może powrócić.",
     wsk:["Zatrucie i przedawkowanie opioidów","Odwracanie depresji oddechowej po opioidach"],
     dor:["0,4–2 mg iv; w razie potrzeby powtarzaj co 2–3 min do dawki maksymalnej 10 mg.","W praktyce: 0,4 mg rozcieńcz do 10 ml i podawaj po 1–2 ml, aż wróci wydolny oddech."],
     dz:"10 µg/kg iv; przy braku efektu dodatkowo 100 µg/kg.",
@@ -740,8 +740,8 @@ DZIALY.push(
   { n:"Paracetamol", lat:"Paracetamolum", post:"czopki, tabletki, roztwór do wstrzykiwań", kl:"Lek przeciwbólowy i przeciwgorączkowy (nie NLPZ)",
     kiedy:"Ból słaby i umiarkowany, gorączka", klucz:"1 g iv/po · dzieci 15 mg/kg", droga:"iv (wlew), doustnie, doodbytniczo",
     mech:"Hamuje syntezę prostaglandyn w ośrodkowym układzie nerwowym. Nie działa przeciwzapalnie, nie wpływa na płytki krwi i nie drażni żołądka.",
-    obraz:"Działa w centrali (mózg), a nie w terenie (tkanki) — dlatego zbija ból i gorączkę, ale nie zapalenie.",
-    wsk:["Ból o słabym i umiarkowanym nasileniu","Gorączka","Baza analgezji łączonej z NLPZ i opioidem"],
+    obraz:"Hamuje wytwarzanie prostaglandyn w ośrodkowym układzie nerwowym, a nie w tkankach obwodowych. Dlatego obniża gorączkę i łagodzi ból, ale nie działa przeciwzapalnie i nie uszkadza błony śluzowej żołądka.",
+    wsk:["Ból o słabym i umiarkowanym nasileniu","Gorączka","Podstawa analgezji łączonej z NLPZ i opioidem"],
     dor:["Dożylnie: 1 g we wlewie ok. 15 min (masa powyżej 50 kg), do 4 razy na dobę.","Doustnie lub doodbytniczo: 0,5–1 g co 6 godzin. Maksymalnie 4 g na dobę."],
     dz:"10–15 mg/kg na dawkę (przeciwbólowo do 20 mg/kg), maksymalnie 65 mg/kg na dobę. Dożylnie 15 mg/kg.",
     pw:"Ciężka niewydolność wątroby, nadwrażliwość. Ostrożnie: alkoholizm, niedożywienie.",
@@ -754,7 +754,7 @@ DZIALY.push(
   { n:"Metoklopramid", lat:"Metoclopramidum", post:"roztwór do wstrzykiwań", kl:"Lek przeciwwymiotny i prokinetyczny — antagonista D2",
     kiedy:"Nudności i wymioty", klucz:"10 mg iv powoli lub im", droga:"iv, im",
     mech:"Blokuje receptory dopaminowe D2 w strefie wyzwalającej wymioty (i częściowo serotoninowe), a w przewodzie pokarmowym nasila uwalnianie acetylocholiny — przyspiesza opróżnianie żołądka.",
-    obraz:"Zakleja czujnik trucizn w mózgu i jednocześnie popycha treść żołądka w dół.",
+    obraz:"Blokuje receptory dopaminowe w ośrodkach wymiotnych mózgu, a w przewodzie pokarmowym przyspiesza opróżnianie żołądka. Działa więc przeciwwymiotnie na dwóch poziomach.",
     wsk:["Nudności i wymioty, także po opioidach","Zaburzenia opróżniania żołądka, refluks"],
     dor:["10 mg iv w powolnym wstrzyknięciu (co najmniej 3 min) lub im; maksymalnie 30 mg na dobę."],
     dz:"Powyżej 1. roku życia 0,15 mg/kg, odstęp między dawkami co najmniej 6 godzin.",
@@ -767,19 +767,19 @@ DZIALY.push(
   ]},
 
 { id:"nlpz", nr:7, t:"NLPZ i kolka", ik:"🔥", kol:"#A3E635",
-  opis:"Ból z zapaleniem i ból ze skurczu — fabryka prostaglandyn i mięśnie gładkie.",
+  opis:"Niesteroidowe leki przeciwzapalne, metamizol i leki rozkurczowe stosowane w bólu zapalnym i kolkowym.",
   siatka:[
     ["Kolka nerkowa lub żółciowa", "NLPZ albo metamizol na ból + drotaweryna na skurcz."],
     ["Uraz narządu ruchu", "Ketoprofen 100 mg lub ibuprofen doustnie, do tego paracetamol."],
-    ["Żołądek, nerki, astma aspirynowa", "NLPZ odpadają — zostaje paracetamol, a przy silnym bólu opioid."],
-    ["Jeden NLPZ naraz", "Ketoprofen albo ibuprofen. Dwa razem dają dwa razy więcej powikłań, nie dwa razy mniej bólu."],
+    ["Przeciwwskazania do NLPZ", "Choroba wrzodowa, niewydolność nerek, astma aspirynowa: pozostaje paracetamol, a przy silnym bólu opioid."],
+    ["Tylko jeden NLPZ", "Ketoprofen albo ibuprofen. Połączenie dwóch NLPZ zwiększa ryzyko powikłań, nie poprawiając skuteczności."],
     ["Dwa leki rozkurczowe", "Drotaweryna — dożylnie lub domięśniowo. Papaweryna — podskórnie lub domięśniowo."]
   ],
   leki:[
   { n:"Metamizol", lat:"Metamizolum natricum", post:"roztwór do wstrzykiwań", kl:"Nieopioidowy lek przeciwbólowy — pochodna pirazolonu",
     kiedy:"Silny ból, kolka, wysoka gorączka", klucz:"1–2,5 g iv powoli · maks. 5 g/d", droga:"iv, im",
     mech:"Hamuje cyklooksygenazę, głównie ośrodkowo: działa silnie przeciwbólowo i przeciwgorączkowo, słabo przeciwzapalnie, a dodatkowo lekko rozkurcza mięśnie gładkie.",
-    obraz:"Jedyny nieopioid z listy, który i uśmierza, i trochę rozkurcza — stąd jego kariera w kolkach.",
+    obraz:"Działa przeciwbólowo i przeciwgorączkowo podobnie jak NLPZ, a dodatkowo lekko rozkurcza mięśnie gładkie. To połączenie wyjaśnia jego częste stosowanie w bólach kolkowych.",
     wsk:["Bóle różnego pochodzenia o dużym nasileniu, w tym kolkowe","Gorączka, gdy inne leki zawiodły"],
     dor:["Doraźnie 0,5–1 g iv lub im, w razie konieczności do 2,5 g; maksymalnie 5 g na dobę.","Dożylnie nie szybciej niż 1 ml/min (500 mg/min), pacjent leży."],
     dz:"Tylko wyjątkowo — przy zagrażającej życiu gorączce, gdy inne leki są nieskuteczne; dawka wg masy ciała.",
@@ -793,7 +793,7 @@ DZIALY.push(
   { n:"Ketoprofen", lat:"Ketoprofenum", post:"tabletki, roztwór do wstrzykiwań", kl:"Niesteroidowy lek przeciwzapalny (NLPZ)",
     kiedy:"Ból z komponentą zapalną: urazy, kolka nerkowa", klucz:"100 mg iv we wlewie lub im", droga:"iv, im, doustnie",
     mech:"Nieselektywnie i odwracalnie hamuje cyklooksygenazy COX-1 i COX-2, czyli wytwarzanie prostaglandyn. Działa przeciwbólowo, przeciwzapalnie i przeciwgorączkowo. Jedyny lek z tej grupy dostępny na liście w iniekcji.",
-    obraz:"Zakręca fabrykę prostaglandyn: mniej bólu, zapalenia i gorączki — ale też mniej ochrony żołądka i gorszy przepływ przez nerki.",
+    obraz:"Hamuje wytwarzanie prostaglandyn w tkankach, co zmniejsza ból, obrzęk i gorączkę. Te same prostaglandyny chronią błonę śluzową żołądka i utrzymują przepływ krwi przez nerki — stąd główne działania niepożądane.",
     wsk:["Bóle kości, stawów i mięśni, bóle pourazowe","Bóle głowy, bóle menstruacyjne","Kolka nerkowa"],
     dor:["Pozajelitowo w stanach ostrych 100–200 mg; dożylnie we wlewie w 100 ml 0,9% NaCl przez ok. 30 min. Aktualne ChPL: maks. 200 mg na dobę.","Doustnie doraźnie 50–100 mg."],
     dz:"Nie stosować poniżej 15. roku życia.",
@@ -807,7 +807,7 @@ DZIALY.push(
   { n:"Ibuprofen", lat:"Ibuprofenum", post:"tabletki", kl:"Niesteroidowy lek przeciwzapalny (NLPZ)",
     kiedy:"Ból łagodny i umiarkowany, gorączka", klucz:"200–400 mg po · dzieci 5–10 mg/kg", droga:"doustnie",
     mech:"Pochodna kwasu propionowego hamująca COX-1 i COX-2. Działa przeciwbólowo, przeciwgorączkowo i przeciwzapalnie; w małych dawkach najłagodniejsza dla żołądka w swojej grupie.",
-    obraz:"Najłagodniejszy w swojej rodzinie: lek na ból i gorączkę domową. U dzieci drugi obok paracetamolu.",
+    obraz:"W małych dawkach jest najlepiej tolerowanym przedstawicielem NLPZ. Obok paracetamolu jest podstawowym lekiem przeciwbólowym i przeciwgorączkowym u dzieci.",
     wsk:["Ból o różnej etiologii","Gorączka","Choroby reumatyczne i zmiany pourazowe"],
     dor:["Przeciwbólowo 200–400 mg doustnie co 4–6 godzin; bez nadzoru lekarza nie więcej niż 1,2 g na dobę."],
     dz:"5–10 mg/kg na dawkę, 3–4 razy na dobę (podręcznik: 3–7 lat 100 mg, 8–12 lat 200 mg na dawkę).",
@@ -821,7 +821,7 @@ DZIALY.push(
   { n:"Drotaweryna", lat:"Drotaverini hydrochloridum", post:"roztwór do wstrzykiwań", kl:"Lek rozkurczowy (spazmolityk)",
     kiedy:"Kolka żółciowa, nerkowa, jelitowa", klucz:"40–80 mg iv powoli lub im", droga:"iv, im, sc",
     mech:"Syntetyczna pochodna papaweryny: hamuje fosfodiesterazę, przez co w komórce rośnie stężenie cAMP i mięsień gładki się rozkurcza. Nie działa cholinolitycznie.",
-    obraz:"Rozluźnia zaciśnięty wąż moczowodu albo dróg żółciowych — kamień przestaje być duszony przez skurcz.",
+    obraz:"Rozkurcza mięśnie gładkie dróg moczowych i żółciowych, działając bezpośrednio na komórkę mięśniową. Zmniejsza skurcz wokół kamienia, który jest głównym źródłem bólu kolkowego.",
     wsk:["Skurcz dróg żółciowych (kamica, zapalenie pęcherzyka)","Skurcz dróg moczowych (kamica nerkowa)","Stany skurczowe przewodu pokarmowego, bolesne miesiączkowanie"],
     dor:["Ostry napad kolki: 40–80 mg iv w powolnym wstrzyknięciu (ok. 30 s), pacjent leży.","Domięśniowo lub podskórnie 40–80 mg, 1–3 razy na dobę (maks. 240 mg na dobę)."],
     dz:"Pozajelitowo nie stosuje się rutynowo.",
@@ -835,7 +835,7 @@ DZIALY.push(
   { n:"Papaweryna", lat:"Papaverini hydrochloridum", post:"roztwór do wstrzykiwań", kl:"Lek rozkurczowy — alkaloid izochinolinowy",
     kiedy:"Kolka jelitowa, żółciowa, nerkowa", klucz:"40–120 mg sc lub im", droga:"sc, im",
     mech:"Alkaloid opium bez działania przeciwbólowego: nieselektywnie hamuje fosfodiesterazę, zmniejsza napięcie mięśni gładkich i rozszerza naczynia krwionośne. Zwalnia też przewodzenie w sercu.",
-    obraz:"Pochodzi z maku jak morfina, ale bólu nie uśmierza i nie odurza — tylko rozkurcza. Starsza siostra drotaweryny.",
+    obraz:"Jest alkaloidem maku, ale w przeciwieństwie do morfiny nie działa na receptory opioidowe. Nie znosi bólu i nie uzależnia — rozkurcza mięśnie gładkie i rozszerza naczynia.",
     wsk:["Kolka jelitowa, żółciowa, nerkowa","Stany skurczowe dróg żółciowych, bolesne parcie na mocz"],
     dor:["40–120 mg podskórnie lub domięśniowo, do 4 razy na dobę."],
     dz:"Nie stosuje się rutynowo.",
@@ -848,19 +848,19 @@ DZIALY.push(
   ]},
 
 { id:"drg", nr:8, t:"Drgawki i sedacja", ik:"🧠", kol:"#818CF8",
-  opis:"Trzy benzodiazepiny, ich odtrutka i jeden uspokajacz spoza rodziny.",
+  opis:"Trzy benzodiazepiny, ich antagonista i lek uspokajający z innej grupy.",
   siatka:[
     ["Drgawki dłużej niż 5 min", "Benzodiazepina. Jest wkłucie → diazepam 5–10 mg iv albo klonazepam 1 mg iv."],
     ["Nie ma wkłucia", "Midazolam 10 mg domięśniowo. U dziecka — diazepam we wlewce doodbytniczej."],
-    ["Zawsze przy drgawkach", "Glikemia! Hipoglikemii nie wyleczysz benzodiazepiną. U ciężarnej myśl o rzucawce i magnezie."],
-    ["Za dużo benzodiazepiny", "Flumazenil — ostrożnie, małymi dawkami, nie każdemu."],
-    ["Lęk bez benzodiazepiny", "Hydroksyzyna doustnie lub domięśniowo."]
+    ["Zawsze przy drgawkach", "Oznacz glikemię — hipoglikemii nie leczy się benzodiazepiną. U ciężarnej rozważ rzucawkę i siarczan magnezu."],
+    ["Przedawkowanie benzodiazepin", "Flumazenil — ostrożnie, małymi dawkami, tylko u wybranych pacjentów."],
+    ["Lęk — lek spoza benzodiazepin", "Hydroksyzyna doustnie lub domięśniowo."]
   ],
   leki:[
   { n:"Diazepam", lat:"Diazepamum", post:"tabletki, roztwór do wstrzykiwań, wlewka doodbytnicza", kl:"Benzodiazepina długo działająca",
     kiedy:"Drgawki, stan padaczkowy, silne pobudzenie", klucz:"5–10 mg iv powoli · wlewka 5 lub 10 mg", droga:"iv, im, doodbytniczo, doustnie",
     mech:"Przyłącza się do receptora GABA-A i nasila hamujące działanie GABA: kanał chlorkowy otwiera się częściej, neuron trudniej pobudzić. Działa przeciwdrgawkowo, uspokajająco, przeciwlękowo i rozluźnia mięśnie — długo. Jako jedyny lek z tej grupy ma na liście postać wlewki doodbytniczej.",
-    obraz:"GABA to hamulec mózgu, a benzodiazepina to wspomaganie hamulca: ta sama stopa, hamuje mocniej.",
+    obraz:"Nasila działanie GABA, głównego przekaźnika hamującego w mózgu. Neuron zachowuje zdolność do pracy, ale trudniej go pobudzić, dlatego wyładowania padaczkowe wygasają.",
     wsk:["Stan padaczkowy, drgawki gorączkowe","Stany lękowe i pobudzenia, objawy odstawienia alkoholu","Rzucawka, tężec, wzmożone napięcie mięśni"],
     dor:["Drgawki: 5–10 mg iv powoli (do 5 mg/min); podręcznik dopuszcza 10–20 mg, powtórzone po 30–60 min.","Ostre pobudzenie, lęk: 10 mg iv lub im. Delirium: 10–20 mg.","Doodbytniczo: 10 mg, maksymalnie 30 mg."],
     dz:"Dożylnie 0,2–0,3 mg/kg. Wlewka doodbytnicza: 10–15 kg → 5 mg, powyżej 15 kg → 10 mg; można powtórzyć po 10–15 min.",
@@ -874,7 +874,7 @@ DZIALY.push(
   { n:"Midazolam", lat:"Midazolamum", post:"roztwór do wstrzykiwań", kl:"Benzodiazepina krótko działająca",
     kiedy:"Drgawki bez dostępu dożylnego, sedacja", klucz:"drgawki: 10 mg im · sedacja 2,5–5 mg iv", droga:"iv, im, donosowo",
     mech:"Nasila działanie GABA na receptor GABA-A jak inne leki z tej grupy, ale działa bardzo szybko i krótko. Rozpuszcza się w wodzie, więc dobrze wchłania się z mięśnia i ze śluzówek.",
-    obraz:"Sprinter w swojej rodzinie: szybki start, krótki dystans — i jedyny, który porządnie działa po wstrzyknięciu w mięsień.",
+    obraz:"Ma ten sam mechanizm co pozostałe benzodiazepiny, ale działa najszybciej i najkrócej. Dobrze wchłania się z mięśnia i z błony śluzowej nosa, więc jest skuteczny także bez dostępu dożylnego.",
     wsk:["Stan padaczkowy, zwłaszcza gdy nie ma wkłucia","Sedacja i premedykacja","Wprowadzenie do znieczulenia"],
     dor:["Drgawki: 10 mg domięśniowo (masa powyżej 40 kg) albo 2,5–5 mg iv miareczkowo.","Sedacja: średnio 5 mg iv (0,07–0,1 mg/kg), frakcjami po 1–2,5 mg."],
     dz:"0,1–0,2 mg/kg im lub iv; donosowo albo na śluzówkę policzka 0,2–0,3 mg/kg (maks. 10 mg). Przy masie 13–40 kg domięśniowo 5 mg.",
@@ -883,18 +883,18 @@ DZIALY.push(
     uw:"Ampułki mają różne stężenia: 1 mg/ml i 5 mg/ml. Sprawdź przed nabraniem. U osób starszych połowa dawki.",
     scen:"Dorosły w napadzie toniczno-klonicznym od 7 minut, szczękościsk, nie da się założyć wkłucia.",
     dq:{ q:"Dawka midazolamu domięśniowo w stanie padaczkowym u dorosłego?", a:"10 mg", d:["100 mg","0,1 mg","1 mg/kg"] },
-    pq:{ q:"Jaka jest przewaga midazolamu nad diazepamem, gdy nie ma wkłucia?", a:"Szybko i pewnie wchłania się z mięśnia i ze śluzówki nosa", d:["Nie powoduje depresji oddechowej","Nie ma odtrutki, więc jest bezpieczniejszy","Działa całą dobę"], w:"Diazepam w mięśniu wchłania się kapryśnie. Midazolam podany domięśniowo działa niemal tak szybko jak benzodiazepina podana dożylnie — po doliczeniu czasu na założenie wkłucia." } },
+    pq:{ q:"Jaka jest przewaga midazolamu nad diazepamem, gdy nie ma wkłucia?", a:"Szybko i pewnie wchłania się z mięśnia i ze śluzówki nosa", d:["Nie powoduje depresji oddechowej","Nie ma odtrutki, więc jest bezpieczniejszy","Działa całą dobę"], w:"Diazepam podany domięśniowo wchłania się nieprzewidywalnie. Midazolam podany domięśniowo działa niemal tak szybko jak benzodiazepina podana dożylnie — po doliczeniu czasu na założenie wkłucia." } },
 
   { n:"Klonazepam", lat:"Clonazepamum", post:"roztwór do wstrzykiwań", kl:"Benzodiazepina długo działająca o silnym działaniu przeciwdrgawkowym",
     kiedy:"Stan padaczkowy", klucz:"1 mg iv powoli", droga:"iv, im",
     mech:"Nasila działanie GABA na receptor GABA-A; wyróżnia się wyjątkowo silnym działaniem przeciwdrgawkowym i zapobiega uogólnianiu się napadu.",
-    obraz:"Specjalistka od padaczki w swojej rodzinie: 1 mg robi robotę 10 mg diazepamu.",
+    obraz:"Spośród benzodiazepin ma najsilniejsze działanie przeciwdrgawkowe w przeliczeniu na miligram: w stanie padaczkowym 1 mg odpowiada mniej więcej 10 mg diazepamu.",
     wsk:["Stan padaczkowy","Padaczka u dorosłych i dzieci — napady częściowe i uogólnione"],
     dor:["1 mg iv powoli (0,25–0,5 mg/min); w razie potrzeby powtórzyć."],
     dz:"Dzieci i niemowlęta: 0,5 mg iv powoli.",
     pw:"Depresja oddechowa, ciężka niewydolność oddechowa, miastenia.",
     dn:"Senność, depresja oddechowa, wiotkość mięśni, nasilone wydzielanie śliny i wydzieliny w oskrzelach.",
-    uw:"Podając dożylnie, monitoruj ciśnienie i oddech. U dzieci nadmiar wydzieliny może zatkać drogi oddechowe — miej ssak pod ręką.",
+    uw:"Podając dożylnie, monitoruj ciśnienie i oddech. U dzieci nadmiar wydzieliny może upośledzić drożność dróg oddechowych — przygotuj ssak.",
     scen:"Stan padaczkowy, wkłucie założone. Lekarz konsultujący prosi o benzodiazepinę z listy podawaną w dawce 1 mg dożylnie.",
     dq:{ q:"Dawka klonazepamu dożylnie u dorosłego w stanie padaczkowym?", a:"1 mg powoli", d:["10 mg powoli","100 mg","0,01 mg"] },
     pq:{ q:"Które działanie niepożądane klonazepamu zagraża drożności dróg oddechowych?", a:"Nasilone wydzielanie śliny i wydzieliny w oskrzelach", d:["Suchość w ustach","Skurcz krtani","Napadowy kaszel"], w:"To cecha wyróżniająca klonazepam, istotna zwłaszcza u niemowląt i małych dzieci." } },
@@ -902,21 +902,21 @@ DZIALY.push(
   { n:"Flumazenil", lat:"Flumazenilum", post:"roztwór do wstrzykiwań", kl:"Antagonista receptora benzodiazepinowego — odtrutka",
     kiedy:"Przedawkowanie benzodiazepin z depresją oddechową", klucz:"0,2 mg iv, potem po 0,1 mg co 60 s", droga:"iv",
     mech:"Konkurencyjnie zajmuje miejsce benzodiazepinowe na receptorze GABA-A i w 30–60 sekund odwraca sedację oraz depresję oddechową wywołaną przez tę grupę leków.",
-    obraz:"Odpowiednik naloksonu dla benzodiazepin: wypycha je z receptora w minutę — i też wychodzi z imprezy wcześniej niż one.",
+    obraz:"Działa wobec benzodiazepin tak jak nalokson wobec opioidów: wypiera je z receptora w ciągu minuty. Działa krócej niż większość z nich, a u części pacjentów może wywołać drgawki.",
     wsk:["Zatrucie i przedawkowanie pochodnych benzodiazepiny","Odwracanie sedacji po zabiegach","Przywracanie czynności oddechowej po benzodiazepinach"],
     dor:["0,2 mg iv w ciągu 15 s; jeśli po minucie brak efektu — 0,1 mg, powtarzane co 60 s do dawki całkowitej 1–2 mg."],
     dz:"Dawkę ustala się indywidualnie — orientacyjnie 0,01 mg/kg (maks. 0,2 mg na dawkę).",
     pw:"Zatrucie mieszane z trójpierścieniowymi lekami przeciwdepresyjnymi, padaczka leczona benzodiazepinami, uzależnienie od benzodiazepin.",
     dn:"Drgawki, pobudzenie i lęk, zespół odstawienny, nudności.",
-    uw:"Brak poprawy po pełnej dawce = szukaj innej przyczyny. Działa ok. godziny, więc sedacja może wrócić. Drgawki po podaniu leczysz midazolamem lub diazepamem.",
+    uw:"Brak poprawy po pełnej dawce wskazuje na inną przyczynę zaburzeń. Działa ok. godziny, więc sedacja może wrócić. Drgawki po podaniu leczysz midazolamem lub diazepamem.",
     scen:"Po sedacji midazolamem do nastawienia zwichnięcia pacjent oddycha 6/min i nie reaguje na ból. Nie bierze przewlekle leków uspokajających, nie ma padaczki.",
     dq:{ q:"Dawkowanie flumazenilu?", a:"0,2 mg iv, potem po 0,1 mg co 60 s do łącznie 1–2 mg", d:["20 mg iv jednorazowo","2 mg/kg domięśniowo","0,002 mg co 10 min"] },
-    pq:{ q:"Kiedy flumazenil jest niebezpieczny?", a:"W zatruciu mieszanym z TLPD i u osób uzależnionych od benzodiazepin — może wywołać drgawki", d:["U każdego pacjenta po 60. roku życia","U chorych na cukrzycę","Po zabiegowej sedacji midazolamem"], w:"Benzodiazepina bywa jedyną rzeczą, która chroni takiego pacjenta przed drgawkami. Zabierając ją, odsłaniasz napad." } },
+    pq:{ q:"Kiedy flumazenil jest niebezpieczny?", a:"W zatruciu mieszanym z TLPD i u osób uzależnionych od benzodiazepin — może wywołać drgawki", d:["U każdego pacjenta po 60. roku życia","U chorych na cukrzycę","Po zabiegowej sedacji midazolamem"], w:"U takiego pacjenta benzodiazepina może być jedynym czynnikiem hamującym drgawki; odwrócenie jej działania może wywołać napad." } },
 
   { n:"Hydroksyzyna", lat:"Hydroxyzinum", post:"tabletki, roztwór do wstrzykiwań", kl:"Lek uspokajający i przeciwhistaminowy (pochodna piperazyny)",
     kiedy:"Lęk, pobudzenie, świąd", klucz:"25–100 mg po · 50–100 mg głęboko im", droga:"doustnie, domięśniowo",
     mech:"Blokuje receptory histaminowe H1 oraz serotoninowe 5-HT2A, słabo także muskarynowe. Działa uspokajająco, przeciwlękowo, przeciwświądowo i przeciwwymiotnie; nie uzależnia.",
-    obraz:"Uspokajacz bez etykiety benzodiazepiny: wycisza lęk przez histaminę i serotoninę, a nie przez GABA.",
+    obraz:"Działa uspokajająco i przeciwlękowo przez receptory histaminowe i serotoninowe, a nie przez GABA jak benzodiazepiny. Nie wywołuje uzależnienia, ale wydłuża odstęp QT.",
     wsk:["Lęk i zaburzenia nerwicowe","Świąd","Premedykacja przed zabiegami"],
     dor:["Doustnie 25–50 mg jednorazowo.","Domięśniowo: uspokajająco 50 mg, w ostrym lęku 50–100 mg.","Aktualne ChPL ograniczają dawkę dobową u dorosłych do 100 mg (podręcznik z 2017 r. podaje więcej)."],
     dz:"Domięśniowo 0,6 mg/kg.",
@@ -928,26 +928,26 @@ DZIALY.push(
     pq:{ q:"Na co trzeba uważać przy hydroksyzynie?", a:"Wydłuża odstęp QT — ryzyko torsade de pointes", d:["Powoduje hipoglikemię","Uszkadza słuch","Uzależnia jak benzodiazepiny"], w:"Z tego powodu Europejska Agencja Leków w 2015 r. obniżyła dawki maksymalne i zakazała łączenia z innymi lekami wydłużającymi QT." } }
   ]},
 
-{ id:"met", nr:9, t:"Cukier, krwotok, mózg", ik:"🧪", kol:"#34D399",
-  opis:"Pięć leków na pięć różnych katastrof: hipoglikemię, krwotok, wgłobienie i świat, który wiruje.",
+{ id:"met", nr:9, t:"Hipoglikemia, krwotok, obrzęk mózgu", ik:"🧪", kol:"#34D399",
+  opis:"Leki stosowane w hipoglikemii, krwotoku urazowym, obrzęku mózgu oraz w nudnościach z zawrotami głowy.",
   siatka:[
-    ["Hipoglikemia, pacjent przytomny", "Cukier doustnie."],
+    ["Hipoglikemia, pacjent przytomny", "Glukoza doustnie."],
     ["Hipoglikemia, jest wkłucie", "Glukoza 20%: 1 ml/kg dożylnie, kontrola glikemii po 10–15 min."],
     ["Hipoglikemia, wkłucia brak", "Glukagon 1 mg domięśniowo — o ile wątroba ma zapas glikogenu."],
     ["Krwotok urazowy", "Ucisk, opaska, miednica → kwas traneksamowy 1 g, do 3 godzin od urazu."],
-    ["Głowa", "Objawy wgłobienia → mannitol 0,25–1 g/kg. Zawroty z wymiotami → tietylperazyna 6,5 mg."]
+    ["Obrzęk mózgu, zawroty głowy", "Objawy wgłobienia → mannitol 0,25–1 g/kg. Zawroty głowy z wymiotami → tietylperazyna 6,5 mg."]
   ],
   leki:[
   { n:"Glukoza 20%", lat:"Glucosum 20%", post:"roztwór do wstrzykiwań", kl:"Węglowodan — roztwór hipertoniczny",
     kiedy:"Hipoglikemia", klucz:"0,2 g/kg = 1 ml/kg roztworu 20%", droga:"iv",
     mech:"Dostarcza gotowe paliwo prosto do krwi: natychmiast podnosi glikemię i przywraca zasilanie neuronów, które nie mają własnych zapasów.",
-    obraz:"Paliwo wlane prosto do baku. Mózg nie ma kanistra na zapas — bez dostawy gaśnie w kilka minut.",
+    obraz:"Dostarcza glukozę bezpośrednio do krwi. Mózg nie magazynuje własnych zapasów glukozy, dlatego w hipoglikemii jego czynność zaburza się w ciągu minut i równie szybko wraca po podaniu.",
     wsk:["Hipoglikemia z zaburzeniami świadomości"],
     dor:["Do 0,2 g glukozy na kg masy ciała, czyli 1 ml/kg roztworu 20% (dorosły zwykle 50–100 ml). Ampułka 10 ml zawiera 2 g.","Kontrola glikemii po 10–15 min, w razie potrzeby powtórz."],
     dz:"0,2 g/kg — najlepiej jako roztwór 10% (2 ml/kg), czyli glukozę 20% rozcieńczoną pół na pół.",
     pw:"Hiperglikemia. Bez potwierdzonej hipoglikemii nie podawaj w udarze i urazie głowy.",
     dn:"Podrażnienie i zakrzepowe zapalenie żyły, martwica tkanek przy wynaczynieniu, hiperglikemia.",
-    uw:"Duża żyła, po podaniu przepłucz wkłucie. Po odzyskaniu przytomności pacjent powinien coś zjeść.",
+    uw:"Duża żyła, po podaniu przepłucz wkłucie. Po odzyskaniu przytomności pacjent powinien spożyć posiłek z węglowodanami.",
     scen:"Cukrzyk leczony insuliną: nieprzytomny, zlany potem, glikemia 28 mg/dl. Wkłucie założone.",
     dq:{ q:"Dawka glukozy 20% w hipoglikemii?", a:"0,2 g/kg, czyli 1 ml/kg", d:["2 g/kg, czyli 10 ml/kg","0,002 g/kg","20 ml/kg w bolusie"] },
     pq:{ q:"Dlaczego glukozę 20% podaje się do dużej żyły i przepłukuje wkłucie?", a:"Bo jest hipertoniczna — drażni żyłę, a wynaczyniona niszczy tkanki", d:["Bo wytrąca się w kontakcie z krwią","Bo działa tylko w żyle głównej","Bo obniża ciśnienie tętnicze"], w:"Osmolarność glukozy 20% jest ok. czterokrotnie wyższa niż osocza. Im cieńsza żyła, tym większe ryzyko zapalenia i martwicy." } },
@@ -955,7 +955,7 @@ DZIALY.push(
   { n:"Glukagon", lat:"Glucagoni hydrochloridum", post:"roztwór do wstrzykiwań", kl:"Hormon trzustki podnoszący glikemię",
     kiedy:"Hipoglikemia bez dostępu do żyły · zatrucie β-blokerami", klucz:"1 mg im/sc/iv", droga:"im, sc, iv",
     mech:"Uwalnia glukozę z glikogenu zmagazynowanego w wątrobie. W dużych dawkach zwiększa siłę i częstość skurczów serca z pominięciem receptorów β.",
-    obraz:"Klucz do spiżarni: otwiera wątrobowy magazyn glikogenu. Gdy spiżarnia jest pusta — alkoholik, głodzenie — klucz nic nie da.",
+    obraz:"Uruchamia uwalnianie glukozy z glikogenu zgromadzonego w wątrobie. Sam glukozy nie dostarcza, dlatego jest nieskuteczny, gdy zapasy glikogenu są wyczerpane, np. u osób wyniszczonych lub z alkoholizmem.",
     wsk:["Ciężka hipoglikemia, zwłaszcza z utratą przytomności, gdy nie ma wkłucia","Zatrucie lekami β-adrenolitycznymi"],
     dor:["Hipoglikemia: 1 mg im, sc lub iv po rozpuszczeniu proszku; można powtórzyć po 15 min.","Zatrucie β-blokerami: 5–10 mg iv, potem wlew 2–10 mg/godz."],
     dz:"Masa ciała do 20–25 kg: 0,5 mg; powyżej: 1 mg.",
@@ -964,12 +964,12 @@ DZIALY.push(
     uw:"Ułóż pacjenta na boku — często wymiotuje. Efekt po ok. 10 min. Po odzyskaniu przytomności podaj węglowodany, żeby odbudować zapas w wątrobie.",
     scen:"Nieprzytomna cukrzyczka, glikemia 30 mg/dl, szczękościsk i drgawki — nie da się założyć wkłucia.",
     dq:{ q:"Dawka glukagonu w hipoglikemii u dorosłego?", a:"1 mg domięśniowo, podskórnie lub dożylnie", d:["10 mg doustnie","0,01 mg dożylnie","100 mg domięśniowo"] },
-    pq:{ q:"U kogo glukagon może nie zadziałać?", a:"U wyniszczonego alkoholika — w wątrobie nie ma zapasu glikogenu", d:["U osoby z nadwagą","U pacjenta przyjmującego aspirynę","U osoby po obfitym posiłku"], w:"Ten lek niczego nie wytwarza, tylko opróżnia magazyn. Przy pustym magazynie zostaje glukoza dożylnie." } },
+    pq:{ q:"U kogo glukagon może nie zadziałać?", a:"U wyniszczonego alkoholika — w wątrobie nie ma zapasu glikogenu", d:["U osoby z nadwagą","U pacjenta przyjmującego aspirynę","U osoby po obfitym posiłku"], w:"Glukagon nie dostarcza glukozy, tylko uwalnia ją z glikogenu wątroby. Gdy zapasów brakuje, pozostaje glukoza dożylnie." } },
 
   { n:"Mannitol 15%", lat:"Mannitolum 15%", post:"roztwór do wlewu dożylnego", kl:"Diuretyk osmotyczny",
     kiedy:"Obrzęk mózgu z objawami wgłobienia", klucz:"0,25–1 g/kg iv w 15–30 min", droga:"iv (wlew)",
     mech:"Zwiększa ciśnienie osmotyczne osocza i ściąga wodę z komórek oraz tkanki mózgowej do naczyń. W nerkach przesącza się, nie wchłania zwrotnie i pociąga wodę do moczu.",
-    obraz:"Gąbka w naczyniach: wsysa wodę z obrzękniętego mózgu do krwi, a nerki ją wylewają.",
+    obraz:"Zwiększa ciśnienie osmotyczne krwi i przyciąga wodę z obrzękniętej tkanki mózgowej do naczyń. Nerki wydalają ją następnie z moczem.",
     wsk:["Obrzęk mózgu i wzmożone ciśnienie śródczaszkowe","Wzmożone ciśnienie wewnątrzgałkowe","Skąpomocz w ostrej niewydolności nerek, diureza wymuszona w zatruciach"],
     dor:["Obrzęk mózgu: 0,25–1 g/kg iv w ciągu 15–30 min. Dla 70 kg i dawki 0,5 g/kg to ok. 230 ml roztworu 15%.","Podręcznik podaje dawkę dobową 50–200 g."],
     dz:"0,25–0,5 g/kg iv.",
@@ -978,18 +978,18 @@ DZIALY.push(
     uw:"Obejrzyj worek pod światło: w chłodzie wytrącają się kryształy — ogrzej do pełnego rozpuszczenia. Ma sens przy objawach wgłobienia, nie przy każdym urazie głowy.",
     scen:"Ciężki uraz głowy, GCS 5, jedna źrenica szeroka i sztywna, RR 190/100, tętno 48/min.",
     dq:{ q:"Dawka mannitolu w obrzęku mózgu?", a:"0,25–1 g/kg iv w 15–30 min", d:["25–100 g/kg","0,25–1 mg/kg","10 ml jednorazowo"] },
-    pq:{ q:"Co robisz, gdy w worku mannitolu widać kryształy?", a:"Ogrzewam worek do całkowitego rozpuszczenia kryształów", d:["Podaję — rozpuszczą się w żyle","Wstrząsam i podaję w bolusie","Dodaję wodorowęglan sodu"], w:"Roztwór 15% jest bliski nasycenia i krystalizuje w niskiej temperaturze. Kryształy podane dożylnie działają jak zator." } },
+    pq:{ q:"Co robisz, gdy w worku mannitolu widać kryształy?", a:"Ogrzewam worek do całkowitego rozpuszczenia kryształów", d:["Podaję — rozpuszczą się w żyle","Wstrząsam i podaję w bolusie","Dodaję wodorowęglan sodu"], w:"Roztwór 15% jest bliski nasycenia i krystalizuje w niskiej temperaturze. Kryształy podane dożylnie mogą wywołać zatorowość." } },
 
   { n:"Kwas traneksamowy", lat:"Acidum tranexamicum", post:"roztwór do wstrzykiwań", kl:"Lek przeciwfibrynolityczny", tag:"nowy",
     kiedy:"Krwotok urazowy", klucz:"1 g iv w 10 min, do 3 h od urazu", droga:"iv",
     mech:"Hamuje fibrynolityczną aktywność plazminy: nie pozwala jej przyczepić się do fibryny, więc powstały skrzep nie jest rozpuszczany.",
-    obraz:"Nie buduje skrzepu — pilnuje, żeby organizm go nie rozebrał. Ochroniarz przy świeżym murze z fibryny.",
+    obraz:"Nie tworzy skrzepu, lecz chroni już powstały przed rozpuszczeniem przez plazminę. Największą korzyść przynosi podany jak najwcześniej po urazie.",
     wsk:["Krwotok w przebiegu urazu","Krwawienia z uogólnioną lub miejscową fibrynolizą: z dróg rodnych, z przewodu pokarmowego, po zabiegach"],
     dor:["Uraz z krwotokiem: 1 g iv w ok. 10 min, jak najwcześniej; kolejny 1 g we wlewie przez 8 godzin już w szpitalu.","Ogólnie wg ChPL: 1–2 ampułki (0,5–1 g) w powolnym wlewie 2–3 razy na dobę."],
     dz:"15–20 mg/kg iv (maks. 1 g).",
     pw:"Ostra zakrzepica, zespół rozsianego krzepnięcia (DIC), ciężka niewydolność nerek, drgawki w wywiadzie.",
     dn:"Nudności, biegunka, spadek ciśnienia przy szybkim podaniu, drgawki po dużych dawkach, powikłania zakrzepowe.",
-    uw:"Liczy się zegar: zanotuj godzinę urazu. Na liście od 26 marca 2024 r.",
+    uw:"Skuteczność zależy od czasu, który upłynął od urazu — zanotuj jego godzinę. Na liście od 26 marca 2024 r.",
     scen:"Wypadek motocyklowy 40 minut temu: niestabilna miednica, RR 80/50, tętno 130/min. Jaki lek zmniejszy utratę krwi?",
     dq:{ q:"Dawka kwasu traneksamowego w krwotoku urazowym?", a:"1 g iv w ok. 10 min, do 3 godzin od urazu", d:["10 g iv w bolusie","100 mg domięśniowo po 6 godzinach","1 mg/kg podskórnie"] },
     pq:{ q:"Dlaczego przy kwasie traneksamowym liczy się czas?", a:"Bo korzyść maleje z każdą minutą, a po 3 godzinach lek może szkodzić", d:["Bo zaczyna działać dopiero po 6 godzinach","Bo w strzykawce traci ważność po godzinie","Bo można go podać tylko raz w życiu"], w:"W badaniu CRASH-2 lek podany w pierwszej godzinie wyraźnie zmniejszał śmiertelność, a podany po 3 godzinach — zwiększał." } },
@@ -997,7 +997,7 @@ DZIALY.push(
   { n:"Tietylperazyna", lat:"Thiethylperazinum", post:"czopki, roztwór do wstrzykiwań", kl:"Lek przeciwwymiotny — pochodna fenotiazyny",
     kiedy:"Nudności, wymioty i zawroty głowy pochodzenia błędnikowego", klucz:"6,5 mg (1 ampułka lub czopek)", droga:"im, iv, doodbytniczo",
     mech:"Hamuje ośrodek wymiotny i strefę wyzwalającą wymioty (blokada receptorów dopaminowych), a także tłumi pobudzenia z błędnika.",
-    obraz:"Fenotiazyna od błędnika: na chwile, gdy wiruje jednocześnie świat i żołądek.",
+    obraz:"Pochodna fenotiazyny, która hamuje ośrodek wymiotny i tłumi pobudzenia z błędnika. Stosowana przede wszystkim w nudnościach połączonych z zawrotami głowy.",
     wsk:["Nudności i wymioty","Zawroty głowy, zaburzenia błędnikowe, choroba Ménière'a","Choroba lokomocyjna"],
     dor:["6,5 mg domięśniowo, dożylnie powoli lub doodbytniczo, 1–3 razy na dobę."],
     dz:"Przeciwwskazana do 15. roku życia.",
@@ -1010,19 +1010,19 @@ DZIALY.push(
   ]},
 
 { id:"ply", nr:10, t:"Płyny", ik:"💧", kol:"#22D3EE",
-  opis:"Co wlewasz, to zostaje w naczyniach — albo z nich ucieka. Pięć worków, pięć zachowań.",
+  opis:"Krystaloidy, koloidy i roztwór glukozy — czym się różnią i jak zachowują się po przetoczeniu.",
   siatka:[
     ["Pierwszy wybór", "Krystaloid zbilansowany: płyn wieloelektrolitowy albo Ringer."],
-    ["0,9% NaCl", "Uraz głowy, rozcieńczanie leków, przepłukiwanie wkłucia. Litrami — zakwasza."],
-    ["Koloid", "Rezerwa, gdy same krystaloidy nie wystarczają. W praktyce żelatyna."],
-    ["5% glukoza", "To nie jest płyn do resuscytacji — to woda z cukrem i rozpuszczalnik (amiodaron)."],
-    ["Ile", "Dorosły: bolus 250–500 ml i ponowna ocena. Dziecko: 10 ml/kg. Krwotok niezatamowany: oszczędnie."]
+    ["0,9% NaCl", "Uraz głowy, rozcieńczanie leków, przepłukiwanie wkłucia. Duże objętości wywołują kwasicę."],
+    ["Koloid", "Rezerwa, gdy same krystaloidy nie wystarczają; w praktyce żelatyna."],
+    ["5% glukoza", "Nie służy do resuscytacji płynowej. Jest rozpuszczalnikiem leków (np. amiodaronu) i źródłem wolnej wody."],
+    ["Objętość", "Dorosły: bolus 250–500 ml i ponowna ocena. Dziecko: 10 ml/kg. Niezatamowany krwotok: ostrożna podaż płynów."]
   ],
   leki:[
   { n:"0,9% NaCl", lat:"Natrii chloridum 0,9%", post:"roztwór do wlewu dożylnego", kl:"Krystaloid izotoniczny",
     kiedy:"Odwodnienie, hipowolemia, nośnik leków", klucz:"bolus 250–500 ml · dzieci 10 ml/kg", droga:"iv, io",
     mech:"Roztwór o osmolarności zbliżonej do osocza, zawierający wyłącznie sód i chlor (po 154 mmol/l). Uzupełnia objętość płynu pozakomórkowego; w naczyniach zostaje mniej więcej jedna czwarta.",
-    obraz:"Woda morska w wersji light: sodu tyle, co w osoczu, ale chloru za dużo — przetaczana litrami zakwasza.",
+    obraz:"Zawiera tyle sodu co osocze, ale wyraźnie więcej chloru. W małych objętościach jest obojętny dla organizmu; przetaczany w litrach może wywołać kwasicę.",
     wsk:["Odwodnienie, hipowolemia, wstrząs","Rozpuszczalnik i nośnik leków, przepłukiwanie wkłucia","Miejscowo: przemywanie oczu, ran, śluzówek"],
     dor:["Bolus 250–500 ml i ponowna ocena; we wstrząsie do 20–30 ml/kg.","Umiarkowane odwodnienie: wlew do 500 ml/godz."],
     dz:"Bolus 10 ml/kg, potem ponowna ocena.",
@@ -1036,7 +1036,7 @@ DZIALY.push(
   { n:"Płyn wieloelektrolitowy (PWE)", lat:"Płyn fizjologiczny wieloelektrolitowy izotoniczny", post:"roztwór do wlewu dożylnego", kl:"Krystaloid zbilansowany",
     kiedy:"Resuscytacja płynowa, odwodnienie", klucz:"bolus 250–500 ml · wstrząs septyczny 30 ml/kg", droga:"iv, io",
     mech:"Izotoniczny roztwór o składzie zbliżonym do osocza: sód, potas, wapń, magnez, mniej chloru oraz octany i cytryniany, które w organizmie zamieniają się w wodorowęglan.",
-    obraz:"Krystaloid skrojony na miarę osocza: jony jak we krwi i bufor zamiast nadmiaru chloru.",
+    obraz:"Ma skład jonowy zbliżony do osocza, a zamiast nadmiaru chloru zawiera bufor. Dlatego nawet duże objętości w niewielkim stopniu zaburzają równowagę kwasowo-zasadową.",
     wsk:["Odwodnienie (wymioty, biegunka, niedostateczna podaż płynów)","Hipowolemia i wstrząs — płyn pierwszego wyboru przy dużych objętościach"],
     dor:["Bolus 250–500 ml i ponowna ocena. Wstrząs septyczny: 30 ml/kg w pierwszych godzinach.","Nawadnianie: zwykle ok. 1000 ml na dobę, w skrajnym odwodnieniu do 4000 ml."],
     dz:"Bolus 10 ml/kg, potem ponowna ocena.",
@@ -1050,7 +1050,7 @@ DZIALY.push(
   { n:"Płyn Ringera", lat:"Solutio Ringeri / zbilansowany roztwór elektrolitowy", post:"roztwór do wlewu dożylnego", kl:"Krystaloid wieloelektrolitowy",
     kiedy:"Odwodnienie, zaburzenia elektrolitowe, wstrząs", klucz:"bolus 250–500 ml · dzieci 10 ml/kg", droga:"iv, io",
     mech:"Roztwór chlorków sodu, potasu i wapnia uzupełniający wodę oraz elektrolity przestrzeni pozakomórkowej. Odmiana z mleczanem zawiera dodatkowo bufor.",
-    obraz:"Sól fizjologiczna z dodatkami: potas i wapń — rosół zamiast samej osolonej wody.",
+    obraz:"Roztwór chlorków sodu, potasu i wapnia — składem bliższy osoczu niż sól fizjologiczna. Zawartość wapnia ogranicza łączenie go z niektórymi lekami w jednej linii.",
     wsk:["Odwodnienie hipo- i izoosmotyczne (wymioty, biegunka)","Zaburzenia elektrolitowe","Wstrząs"],
     dor:["Bolus 250–500 ml i ponowna ocena.","Nawadnianie: średnio 1500 ml, do 3000 ml na dobę."],
     dz:"Bolus 10 ml/kg, potem ponowna ocena.",
@@ -1064,13 +1064,13 @@ DZIALY.push(
   { n:"Koloidy (żelatyna, HES)", lat:"Płyny koloidowe: skrobia hydroksyetylowana, żelatyna modyfikowana", post:"roztwór do wlewu dożylnego", kl:"Koloid — płyn objętościowy",
     kiedy:"Hipowolemia, gdy krystaloidy nie wystarczają", klucz:"żelatyna 500–1000 ml", droga:"iv",
     mech:"Roztwory dużych cząsteczek, które nie przechodzą łatwo przez ścianę naczyń: zatrzymują wodę w łożysku naczyniowym i wypełniają je skuteczniej oraz na dłużej niż krystaloidy.",
-    obraz:"Krystaloid przecieka z naczyń jak woda przez sito. Tu cząsteczki są jak większe kulki — zostają w rurach dłużej.",
+    obraz:"Duże cząsteczki z trudem przechodzą przez ścianę naczyń, więc płyn dłużej pozostaje w łożysku naczyniowym. Krystaloid w znacznej części przechodzi do tkanek w ciągu kilkudziesięciu minut.",
     wsk:["Hipowolemia i wstrząs hipowolemiczny","Oparzenia (żelatyna)"],
     dor:["Żelatyna: 500–1000 ml iv, szybkość zależna od stanu hemodynamicznego.","HES 6%: wg podręcznika do 33 ml/kg."],
     dz:"Brak badań potwierdzających bezpieczeństwo — nie stosuje się rutynowo.",
     pw:"HES: sepsa, oparzenia, niewydolność nerek, krwawienie śródczaszkowe, pacjenci w stanie krytycznym. Wszystkie koloidy: przewodnienie, nadwrażliwość.",
     dn:"Reakcje anafilaktoidalne (najczęściej po żelatynie), uszkodzenie nerek i zaburzenia krzepnięcia (HES), świąd, przeciążenie krążenia.",
-    uw:"HES od 2013 r. ma w Unii Europejskiej coraz ostrzejsze ograniczenia, a w 2022 r. zapadła decyzja o zawieszeniu pozwoleń — w praktyce z tej pozycji zostaje żelatyna.",
+    uw:"HES od 2013 r. ma w Unii Europejskiej coraz ostrzejsze ograniczenia, a w 2022 r. zapadła decyzja o zawieszeniu pozwoleń — w praktyce stosuje się żelatynę.",
     scen:"Która pozycja z listy to roztwory wielkocząsteczkowe, które dłużej zostają w naczyniach, ale częściej wywołują reakcje anafilaktoidalne?",
     dq:{ q:"Dawka żelatyny u dorosłego w hipowolemii?", a:"500–1000 ml iv, szybkość wg stanu pacjenta", d:["50–100 ml","5–10 litrów","10 ml/kg/min przez godzinę"] },
     pq:{ q:"W jakiej sytuacji HES jest przeciwwskazany?", a:"W sepsie, oparzeniach i niewydolności nerek", d:["Wyłącznie w hipoglikemii","Wyłącznie przy nadciśnieniu","Nigdy — HES nie ma przeciwwskazań"], w:"W tych grupach HES zwiększał częstość uszkodzenia nerek i śmiertelność, co doprowadziło do ograniczeń, a potem zawieszenia pozwoleń w UE." } },
@@ -1078,13 +1078,13 @@ DZIALY.push(
   { n:"Glukoza 5%", lat:"Glucosum 5%", post:"roztwór do wlewu dożylnego", kl:"Roztwór węglowodanu — źródło wolnej wody",
     kiedy:"Rozpuszczalnik leków (amiodaron), uzupełnianie wody", klucz:"rozpuszczalnik · 500 ml = 25 g glukozy", droga:"iv",
     mech:"W worku roztwór jest izoosmotyczny, ale cukier w kilka minut znika w komórkach i zostaje czysta woda, która rozchodzi się po wszystkich przestrzeniach wodnych — w naczyniach zostaje jej niespełna jedna dziesiąta.",
-    obraz:"Woda w przebraniu: cukier znika i zostaje sama woda, która ucieka z naczyń do tkanek — także do mózgu.",
+    obraz:"Po wniknięciu glukozy do komórek pozostaje czysta woda, która rozchodzi się po wszystkich przestrzeniach wodnych organizmu, także do mózgu. W naczyniach zostaje jej niewiele, dlatego nie nadaje się do resuscytacji płynowej.",
     wsk:["Rozpuszczalnik i środek do rozcieńczania leków podawanych pozajelitowo, np. amiodaronu","Niedobór wody, odwodnienie — pomocniczo","Zapobieganie hipoglikemii"],
     dor:["Jako rozpuszczalnik — w objętości potrzebnej do leku.","Niedobór płynów i węglowodanów: 500 ml do 3 litrów na dobę."],
     dz:"Wg zapotrzebowania dobowego: do 10 kg 100 ml/kg; 10–20 kg 1000 ml + 50 ml na każdy kg powyżej 10; powyżej 20 kg 1500 ml + 20 ml na każdy kg powyżej 20.",
     pw:"Hiperglikemia, uraz głowy i obrzęk mózgu, udar, hiponatremia. Nie nadaje się do resuscytacji płynowej.",
     dn:"Hiperglikemia, hiponatremia, nasilenie obrzęku mózgu, hipokaliemia.",
-    uw:"Hipoglikemii tym nie wyleczysz: 100 ml to zaledwie 5 g cukru. Od tego jest glukoza 20%.",
+    uw:"Nie służy do leczenia hipoglikemii: 100 ml zawiera tylko 5 g glukozy. W hipoglikemii podaje się glukozę 20%.",
     scen:"Który płyn z listy po zmetabolizowaniu cukru zachowuje się jak czysta woda i dlatego nie nadaje się ani do resuscytacji płynowej, ani przy urazie głowy?",
     dq:{ q:"Ile glukozy jest w 500 ml roztworu 5%?", a:"25 g", d:["5 g","50 g","250 g"] },
     pq:{ q:"Dlaczego 5% glukozy nie podaje się w urazie głowy?", a:"Bo to w praktyce wolna woda, która nasila obrzęk mózgu", d:["Bo podnosi ciśnienie tętnicze","Bo powoduje hiperkaliemię","Bo wytrąca się we krwi"], w:"Woda bez elektrolitów przechodzi do komórek, także nerwowych. W zamkniętej czaszce każdy dodatkowy mililitr podnosi ciśnienie." } }
@@ -1134,7 +1134,7 @@ const KOREKTY = {
 "Hydroksyzyna": { pq:{ a:"Wydłuża odstęp QT — ryzyko torsade de pointes", d:["Obniża glikemię — ryzyko neuroglikopenii","Uszkadza słuch — ryzyko trwałej głuchoty","Uzależnia fizycznie tak samo jak benzodiazepiny"] } },
 "Glukoza 20%": { pq:{ a:"Bo jest hipertoniczna — drażni żyłę i niszczy tkanki", d:["Bo w cienkiej żyle wytrąca się w kontakcie z krwią","Bo działa wyłącznie po dotarciu do żyły głównej","Bo podana obwodowo gwałtownie obniża ciśnienie"] } },
 "Glukagon": { dq:{ d:["10 mg doustnie, popić słodkim napojem","0,01 mg dożylnie, powtarzać co minutę","100 mg domięśniowo w dwa miejsca"] },
-  pq:{ a:"U wyniszczonego alkoholika — wątroba nie ma glikogenu", d:["U osoby z dużą nadwagą — lek gubi się w tkance tłuszczowej","U pacjenta przyjmującego aspirynę — leki się znoszą","U osoby po obfitym posiłku — receptory są wysycone"] } },
+  pq:{ a:"U wyniszczonego alkoholika — wątroba nie ma glikogenu", d:["U osoby z dużą nadwagą — lek gromadzi się w tkance tłuszczowej","U pacjenta przyjmującego aspirynę — leki znoszą wzajemnie swoje działanie","U osoby po obfitym posiłku — receptory są wysycone"] } },
 "Mannitol 15%": { dq:{ a:"0,25–1 g/kg iv w 15–30 min", d:["25–100 g/kg iv w 15–30 min","0,25–1 mg/kg iv w bolusie","10 ml iv, niezależnie od masy"] },
   pq:{ a:"Ogrzewam worek, aż kryształy całkiem się rozpuszczą", d:["Podaję od razu — kryształy rozpuszczą się w żyle","Wstrząsam workiem i podaję w szybkim bolusie","Dodaję do worka ampułkę wodorowęglanu sodu"] } },
 "Kwas traneksamowy": { pq:{ a:"Bo korzyść maleje z każdą minutą, a po 3 h lek może szkodzić", d:["Bo lek zaczyna działać dopiero po 6 godzinach od podania","Bo nabrany do strzykawki traci ważność po godzinie","Bo można go podać pacjentowi tylko raz w życiu"] } },
@@ -1630,7 +1630,7 @@ function kartaLeku(l){
       ${tagi.includes("ekg") ? `<span class="zn ekg">tylko po teletransmisji EKG i konsultacji</span>` : ""}
       ${tagi.includes("nowy") ? `<span class="zn nowy">na liście od 2024</span>` : ""}
     </div>
-    <div class="obraz"><span class="et">Skojarzenie</span>${gl(l.obraz)}</div>
+    <div class="obraz"><span class="et">Porównanie</span>${gl(l.obraz)}</div>
     <div class="siatka2">
       <div class="blok caly"><span class="et">Jak działa</span><p>${gl(l.mech)}</p></div>
       <div class="blok"><span class="et">Kiedy podajesz</span><ul>${l.wsk.map(w => `<li>${gl(w)}</li>`).join("")}</ul></div>
@@ -1679,7 +1679,7 @@ function rysFiszki(){ F = { talia:tasuj(D.leki), i:0, odwr:false, um:0 }; rysFis
 function rysFiszke(){
   const box = $("#tresc");
   if (F.i >= F.talia.length) {
-    box.innerHTML = `<div class="panel wynik-k"><div class="proc">${F.um}/5</div><div class="wer">${F.um === 5 ? "Cała talia w głowie." : "Do powtórki: " + (5 - F.um) + "."}</div>
+    box.innerHTML = `<div class="panel wynik-k"><div class="proc">${F.um}/5</div><div class="wer">${F.um === 5 ? "Wszystkie fiszki opanowane." : "Do powtórki: " + (5 - F.um) + "."}</div>
       <div class="rzad" style="justify-content:center;margin-top:18px"><button class="btn sec" id="f-raz">Jeszcze raz</button><button class="btn" id="f-test">Przejdź do testu →</button></div></div>`;
     $("#f-raz").onclick = rysFiszki; $("#f-test").onclick = () => { zakladka = "test"; rysZakladke(); };
     return;
@@ -1692,7 +1692,7 @@ function rysFiszke(){
           <div class="f-w"><span class="et">Grupa</span>${gl(l.kl)}</div>
           <div class="f-w"><span class="et">Kiedy</span>${gl(l.kiedy)}</div>
           <div class="f-w dw"><span class="et">Dawka kluczowa</span>${gl(l.klucz)}</div>
-          <div class="f-w"><span class="et">Skojarzenie</span>${gl(l.obraz)}</div>
+          <div class="f-w"><span class="et">Porównanie</span>${gl(l.obraz)}</div>
           <div class="f-w"><span class="et">Zapamiętaj</span>${gl(l.uw)}</div></div>
         <div class="lek-stopka"><button class="btn sec" id="f-nie">Jeszcze nie umiem</button><button class="btn" id="f-tak">Umiem ✓</button></div>`);
   if (!F.odwr) $("#f-k").onclick = () => { F.odwr = true; rysFiszke(); };
@@ -1704,7 +1704,7 @@ function rysFiszke(){
 
 // ── Dopasuj ──
 let P = null;
-const DOP_TRYBY = [["kiedy","Lek ↔ sytuacja"],["klucz","Lek ↔ dawka"],["obraz","Lek ↔ skojarzenie"],["kl","Lek ↔ grupa"]];
+const DOP_TRYBY = [["kiedy","Lek ↔ sytuacja"],["klucz","Lek ↔ dawka"],["obraz","Lek ↔ porównanie"],["kl","Lek ↔ grupa"]];
 function rysDopasuj(tryb){
   P = { tryb:tryb || (P && P.tryb) || "kiedy", lewe:tasuj(D.leki), prawe:tasuj(D.leki), wyb:null, ok:new Set(), okP:new Set(), bledy:0 };
   rysPary();
@@ -1713,7 +1713,7 @@ function rysPary(){
   const koniec = P.ok.size === 5;
   $("#tresc").innerHTML = `
     <div class="rzad" style="margin-bottom:12px">${DOP_TRYBY.map(t => `<button class="chip ${P.tryb === t[0] ? "on" : ""}" data-t="${t[0]}">${t[1]}</button>`).join("")}</div>
-    <div class="mini" style="margin-bottom:10px;font-weight:700">${koniec ? (P.bledy ? "Gotowe — pomyłek: " + P.bledy + "." : "Bezbłędnie. 5 na 5.") : "Dotknij leku po lewej, potem pasującego opisu po prawej. Pomyłki: " + P.bledy}</div>
+    <div class="mini" style="margin-bottom:10px;font-weight:700">${koniec ? (P.bledy ? "Gotowe — pomyłek: " + P.bledy + "." : "Bez błędów — 5 na 5.") : "Dotknij leku po lewej, potem pasującego opisu po prawej. Pomyłki: " + P.bledy}</div>
     <div class="dop">
       <div class="dop-kol">${P.lewe.map(l => `<button class="dop-b lewy ${P.ok.has(l.n) ? "ok" : ""} ${P.wyb === l.n ? "wyb" : ""}" data-l="${LEKI.indexOf(l)}">${l.n}</button>`).join("")}</div>
       <div class="dop-kol">${P.prawe.map(l => `<button class="dop-b prawy ${P.okP.has(l.n) ? "ok" : ""}" data-p="${LEKI.indexOf(l)}">${l[P.tryb]}</button>`).join("")}</div>
@@ -1797,7 +1797,7 @@ function wynikTestu(){
   const wgSek = grupuj(h => h.q.lek.snr + ". " + dzial(h.q.lek.sek).t), wgTyp = grupuj(h => h.q.typ);
   const rozb = g => Object.entries(g).map(e => `<div><span>${e[0]}</span><b style="color:${e[1][0] === e[1][1] ? "var(--ok)" : e[1][0] / e[1][1] < .6 ? "var(--zle)" : "var(--tekst)"}">${e[1][0]}/${e[1][1]}</b></div>`).join("");
   const bledy = T.hist.filter(h => !h.ok);
-  const wer = proc >= PROG ? (proc === 100 ? "Bezbłędnie." : "Zaliczone.") : proc >= 60 ? "Blisko — jeszcze jedna powtórka." : "Wróć do kart i ściągi, potem spróbuj ponownie.";
+  const wer = proc >= PROG ? (proc === 100 ? "Bezbłędnie." : "Zaliczone.") : proc >= 60 ? "Niewiele zabrakło — powtórz materiał i spróbuj ponownie." : "Wróć do kart i ściągi, potem spróbuj ponownie.";
   app.innerHTML = `
     <div class="panel wynik-k" style="margin-top:20px">
       <div class="proc" style="color:${proc >= PROG ? "var(--ok)" : proc >= 60 ? "var(--czern)" : "var(--zle)"}">${proc}%</div>
