@@ -145,6 +145,9 @@
 
   /* karta leku */
   .lek { background:var(--papier3); padding:22px; box-shadow:9px 9px 0 var(--kol); margin-right:9px; }
+  .lek-gr { display:inline-block; background:var(--kol); color:var(--na); padding:4px 10px 3px; margin:0 0 10px; font:700 16px/1.25 var(--f-plakat); letter-spacing:.06em; text-transform:uppercase; max-width:100%; }
+  .lek-gr span { font-weight:700; opacity:.85; text-transform:none; letter-spacing:.02em; font-family:var(--f-tekst); font-size:14px; }
+  .lek-gr .term { border-bottom-color:currentColor; }
   .lek-nag { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px; }
   .lek-nag h3 { font:400 clamp(26px,5vw,44px)/1.05 var(--f-maszyna); text-transform:uppercase; overflow-wrap:anywhere; }
   .lek-lat { font:400 18px/1.2 var(--f-maszyna); color:var(--czerwien); }
@@ -1398,6 +1401,61 @@ const SLOWNIK = [
 { n:"Odruch kolanowy", k:"Objaw", o:"Wyprost podudzia po uderzeniu młotkiem w ścięgno pod rzepką — przykład odruchu ścięgnistego. Jego zanik jest pierwszym sygnałem, że przewodnictwo nerwowo-mięśniowe jest tłumione.", t:["odruchu kolanowego","odruch kolanowy","odruchów ścięgnistych"] }
 ];
 
+// ── Grupy leków (nazewnictwo farmakologiczne) ──
+// [grupa, podgrupa / doprecyzowanie, grupy, do których lek też można zaliczyć — nie pojawią się jako błędne odpowiedzi]
+const GRUPY_LEKOW = {
+  "Adrenalina":                    ["Sympatykomimetyki", "katecholamina, wazopresor", []],
+  "Amiodaron":                     ["Leki przeciwarytmiczne", "klasa III", []],
+  "Noradrenalina":                 ["Sympatykomimetyki", "katecholamina, wazopresor", []],
+  "Wodorowęglan sodu 8,4%":        ["Leki alkalizujące", "bufor wyrównujący kwasicę", ["Elektrolity"]],
+  "Tlen medyczny":                 ["Gazy medyczne", "", []],
+  "Atropina":                      ["Parasympatykolityki", "cholinolityk, antagonista receptorów muskarynowych", ["Leki przeciwarytmiczne"]],
+  "Adenozyna":                     ["Leki przeciwarytmiczne", "nukleozyd purynowy", []],
+  "Lidokaina":                     ["Leki przeciwarytmiczne", "klasa Ib; jednocześnie anestetyk miejscowy", []],
+  "Metoprolol":                    ["Beta-adrenolityki", "kardioselektywny (β1); lek przeciwarytmiczny klasy II", ["Leki przeciwarytmiczne", "Leki hipotensyjne"]],
+  "Siarczan magnezu":              ["Elektrolity", "fizjologiczny antagonista wapnia", ["Leki przeciwarytmiczne", "Antyepileptyki", "Leki alkalizujące"]],
+  "Kwas acetylosalicylowy (ASA)":  ["Leki przeciwpłytkowe", "salicylan z grupy NLPZ", ["NLPZ", "Analgetyki nieopioidowe"]],
+  "Klopidogrel":                   ["Leki przeciwpłytkowe", "inhibitor P2Y12 (tienopirydyna)", []],
+  "Tikagrelor":                    ["Leki przeciwpłytkowe", "odwracalny inhibitor P2Y12", []],
+  "Prasugrel":                     ["Leki przeciwpłytkowe", "inhibitor P2Y12 (tienopirydyna III generacji)", []],
+  "Heparyna niefrakcjonowana":     ["Leki przeciwkrzepliwe", "antykoagulant", []],
+  "Nitrogliceryna":                ["Azotany", "lek rozszerzający naczynia, przeciwdławicowy", ["Leki hipotensyjne"]],
+  "Monoazotan izosorbidu":         ["Azotany", "długo działający, przeciwdławicowy", ["Leki hipotensyjne"]],
+  "Kaptopryl":                     ["Leki hipotensyjne", "inhibitor konwertazy angiotensyny (ACE-I)", []],
+  "Urapidyl":                      ["Leki hipotensyjne", "α1-adrenolityk", []],
+  "Furosemid":                     ["Diuretyki", "diuretyk pętlowy", ["Leki hipotensyjne"]],
+  "Salbutamol":                    ["Sympatykomimetyki", "β2-mimetyk krótko działający (SABA), rozszerza oskrzela", []],
+  "Budezonid":                     ["Glikokortykosteroidy", "wziewny", []],
+  "Hydrokortyzon":                 ["Glikokortykosteroidy", "krótko działający, ogólnoustrojowy", []],
+  "Deksametazon":                  ["Glikokortykosteroidy", "długo działający, ogólnoustrojowy", []],
+  "Klemastyna":                    ["Leki przeciwhistaminowe", "I generacji, antagonista H1", ["Anksjolityki", "Leki nasenne i uspokajające"]],
+  "Morfina":                       ["Analgetyki opioidowe", "agonista receptora µ", []],
+  "Fentanyl":                      ["Analgetyki opioidowe", "syntetyczny agonista receptora µ", []],
+  "Nalokson":                      ["Odtrutki", "antagonista receptorów opioidowych", []],
+  "Paracetamol":                   ["Analgetyki nieopioidowe", "lek przeciwbólowy i przeciwgorączkowy, nie należy do NLPZ", []],
+  "Metoklopramid":                 ["Leki przeciwwymiotne", "antagonista D2, prokinetyk", []],
+  "Metamizol":                     ["Analgetyki nieopioidowe", "pochodna pirazolonu, działa też rozkurczowo", ["NLPZ", "Spazmolityki"]],
+  "Ketoprofen":                    ["NLPZ", "niesteroidowy lek przeciwzapalny, pochodna kwasu propionowego", ["Analgetyki nieopioidowe"]],
+  "Ibuprofen":                     ["NLPZ", "niesteroidowy lek przeciwzapalny, pochodna kwasu propionowego", ["Analgetyki nieopioidowe"]],
+  "Drotaweryna":                   ["Spazmolityki", "lek rozkurczowy mięśni gładkich", []],
+  "Papaweryna":                    ["Spazmolityki", "lek rozkurczowy, alkaloid izochinolinowy", []],
+  "Diazepam":                      ["Anksjolityki", "benzodiazepina długo działająca", ["Antyepileptyki", "Leki nasenne i uspokajające"]],
+  "Midazolam":                     ["Leki nasenne i uspokajające", "benzodiazepina krótko działająca", ["Anksjolityki", "Antyepileptyki"]],
+  "Klonazepam":                    ["Antyepileptyki", "benzodiazepina", ["Anksjolityki", "Leki nasenne i uspokajające"]],
+  "Flumazenil":                    ["Odtrutki", "antagonista receptora benzodiazepinowego", []],
+  "Hydroksyzyna":                  ["Anksjolityki", "lek przeciwhistaminowy (pochodna piperazyny)", ["Leki przeciwhistaminowe", "Leki nasenne i uspokajające"]],
+  "Glukoza 20%":                   ["Leki podnoszące stężenie glukozy", "roztwór hipertoniczny", ["Płyny infuzyjne"]],
+  "Glukagon":                      ["Leki podnoszące stężenie glukozy", "hormon trzustki", []],
+  "Mannitol 15%":                  ["Diuretyki", "diuretyk osmotyczny", []],
+  "Kwas traneksamowy":             ["Leki przeciwkrwotoczne", "antyfibrynolityk", []],
+  "Tietylperazyna":                ["Leki przeciwwymiotne", "pochodna fenotiazyny", []],
+  "0,9% NaCl":                     ["Płyny infuzyjne", "krystaloid izotoniczny", ["Elektrolity"]],
+  "Płyn wieloelektrolitowy (PWE)": ["Płyny infuzyjne", "krystaloid zbilansowany", ["Elektrolity"]],
+  "Płyn Ringera":                  ["Płyny infuzyjne", "krystaloid wieloelektrolitowy", ["Elektrolity"]],
+  "Koloidy (żelatyna, HES)":       ["Płyny infuzyjne", "koloid — płyn objętościowy", []],
+  "Glukoza 5%":                    ["Płyny infuzyjne", "roztwór glukozy, źródło wolnej wody", ["Leki podnoszące stężenie glukozy"]]
+};
+
 
 // ═══════════════════════ APLIKACJA ═══════════════════════
 const PROG = 80;                       // % na zaliczenie działu
@@ -1430,6 +1488,8 @@ const ILUSTRACJA = `<svg class="plakat-il" viewBox="0 0 560 420" aria-hidden="tr
   <path d="M120 120 C112 96 132 82 142 70 C146 92 150 112 120 120Z" fill="#17140F"/><circle cx="96" cy="152" r="6" fill="#17140F"/>
   <path d="M410 330 C432 330 446 346 444 364 C430 360 414 350 410 330Z" fill="#17140F"/></g></svg>`;
 const LEKI = DZIALY.flatMap(d => d.leki.map(l => Object.assign(l, { sek:d.id, snr:d.nr, kol:d.kol })));
+LEKI.forEach(l => { const g = GRUPY_LEKOW[l.n] || ["", "", []]; l.gr = g[0]; l.grp = g[1]; l.grX = g[2]; });
+const grupaPelna = l => l.gr + (l.grp ? " — " + l.grp : "");
 const $ = (s, r) => (r || document).querySelector(s);
 const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
 const app = $("#app");
@@ -1528,7 +1588,7 @@ function pytaniaLeku(l){
     { typ:"Dawka", lek:l, q:l.dq.q, a:l.dq.a, d:l.dq.d, w:l.dq.w || l.uw },
     { typ:"Pułapka", lek:l, q:l.pq.q, a:l.pq.a, d:l.pq.d, w:l.pq.w },
     { typ:"Mechanizm", lek:l, q:"Który lek działa w ten sposób?", cyt:l.mq || l.mech, a:l.n, d:nazwy(), w:l.obraz },
-    { typ:"Grupa", lek:l, q:"Do jakiej grupy należy " + l.n + "?", a:l.kl, d:los(uniq(obce.map(x => x.kl)).filter(k => k !== l.kl), 3), w:l.mech },
+    { typ:"Grupa", lek:l, q:"Do jakiej grupy leków należy " + l.n + "?", a:l.gr, d:los(uniq(LEKI.map(x => x.gr)).filter(g => g && g !== l.gr && !l.grX.includes(g)), 3), w:grupaPelna(l) + ". " + l.mech },
     { typ:"Wskazanie", lek:l, q:"Kiedy sięgasz po lek: " + l.n + "?", a:l.kiedy, d:los(uniq(obce.map(x => x.kiedy)).filter(k => k !== l.kiedy), 3), w:l.obraz }
   ];
 }
@@ -1626,8 +1686,8 @@ function hub(){
   // wyszukiwarka
   $("#szukaj").oninput = e => {
     const s = e.target.value.trim().toLowerCase();
-    $("#wyniki").innerHTML = s.length < 2 ? "" : LEKI.filter(l => (l.n + " " + l.lat + " " + l.kl).toLowerCase().includes(s)).slice(0, 8)
-      .map(l => `<button class="wynik" style="--kol:${l.kol}" data-n="${LEKI.indexOf(l)}">${l.n}<small>Dział ${l.snr} · ${l.klucz}</small></button>`).join("")
+    $("#wyniki").innerHTML = s.length < 2 ? "" : LEKI.filter(l => (l.n + " " + l.lat + " " + l.kl + " " + l.gr).toLowerCase().includes(s)).slice(0, 8)
+      .map(l => `<button class="wynik" style="--kol:${l.kol}" data-n="${LEKI.indexOf(l)}">${l.n}<small>${l.gr} · dział ${l.snr}</small></button>`).join("")
       || `<span class="mini">Nie ma takiego leku na liście.</span>`;
     $$("#wyniki .wynik").forEach(b => b.onclick = () => { const l = LEKI[+b.dataset.n]; otworzDzial(l.sek, "nauka", dzial(l.sek).leki.indexOf(l)); });
   };
@@ -1677,6 +1737,7 @@ function rysZakladke(){
 function kartaLeku(l){
   const tagi = (l.tag || "").split(" ");
   return `<article class="lek">
+    <div class="lek-gr">Grupa: ${l.gr}</div>
     <div class="lek-nag"><h3>${l.n}</h3><span class="lek-lat">${l.lat}</span></div>
     <div class="znaczki">
       <span class="zn kl">${gl(l.kl)}</span><span class="zn">${l.post}</span><span class="zn">droga: ${l.droga}</span>
@@ -1719,7 +1780,7 @@ function rysSciage(){
     <h3 class="sciaga-h">Pięć leków obok siebie</h3>
     <div class="tabela-w"><table>
       <thead><tr><th>Lek</th><th>Grupa</th><th>Kiedy</th><th>Dawka kluczowa</th><th>Droga</th></tr></thead>
-      <tbody>${D.leki.map(l => `<tr><td>${l.n}</td><td>${gl(l.kl)}</td><td>${gl(l.kiedy)}</td><td class="dw">${gl(l.klucz)}</td><td>${gl(l.droga)}</td></tr>`).join("")}</tbody>
+      <tbody>${D.leki.map(l => `<tr><td>${l.n}</td><td><b>${gl(l.gr)}</b><br><span class="mini">${gl(l.kl)}</span></td><td>${gl(l.kiedy)}</td><td class="dw">${gl(l.klucz)}</td><td>${gl(l.droga)}</td></tr>`).join("")}</tbody>
     </table></div>
     <div class="lek-stopka"><button class="btn sec" id="s-f">Powtórz fiszkami</button><button class="btn" id="s-t">Przejdź do testu →</button></div>`;
   $("#s-f").onclick = () => { zakladka = "fiszki"; rysZakladke(); naGore(); };
@@ -1742,7 +1803,7 @@ function rysFiszke(){
     (!F.odwr
       ? `<div class="fiszka ziarno" id="f-k"><h3>${l.n}</h3><div class="lek-lat" style="margin-top:6px">${l.lat}</div><div class="podp">dotknij, żeby odwrócić</div></div>`
       : `<div class="fiszka tyl"><h3>${l.n}</h3>
-          <div class="f-w"><span class="et">Grupa</span>${gl(l.kl)}</div>
+          <div class="f-w"><span class="et">Grupa</span><b>${gl(l.gr)}</b> — ${gl(l.kl)}</div>
           <div class="f-w"><span class="et">Kiedy</span>${gl(l.kiedy)}</div>
           <div class="f-w dw"><span class="et">Dawka kluczowa</span>${gl(l.klucz)}</div>
           <div class="f-w"><span class="et">Porównanie</span>${gl(l.obraz)}</div>
@@ -1831,7 +1892,7 @@ function odpowiedz(i){
   $("#t-fb").innerHTML = `<div class="t-fb ${ok ? "ok" : "no"}">
     <h4>${ok ? "✓ Dobrze" : "✗ Poprawna odpowiedź: " + q.a}</h4>
     <p>${gl(q.w)}</p>
-    <div class="karta"><b>${l.n}</b> — ${gl(l.kl)}. Dawka kluczowa: <b>${gl(l.klucz)}</b>.</div></div>`;
+    <div class="karta"><b>${l.n}</b> — ${gl(l.gr)}: ${gl(l.kl)}. Dawka kluczowa: <b>${gl(l.klucz)}</b>.</div></div>`;
   const d = $("#t-dalej"); d.hidden = false; d.focus({ preventScroll:true });
 }
 function dalej(){ if (!T || !T.odp) return; if (T.i === T.p.length - 1) wynikTestu(); else { T.i++; rysPytanie(); naGore(); } }
