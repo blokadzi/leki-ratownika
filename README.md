@@ -11,4 +11,4 @@ To materiał do nauki, nie protokół — przed podaniem leku obowiązują aktua
 
 ## Konta
 
-Logowanie nickiem i hasłem (bez adresu e-mail) synchronizuje postęp między urządzeniami. Konta i postęp przechowuje baza Supabase; schemat i funkcje są w pliku `supabase.sql`. Hasła zapisywane są wyłącznie jako skrót bcrypt.
+Logowanie nickiem i hasłem (bez adresu e-mail) synchronizuje postęp między urządzeniami. Konta i postęp przechowuje baza Supabase; schemat i funkcje są w pliku `supabase.sql`. To samo konto działa w aplikacji „Farmakologia” — jej postęp (fiszki, wyniki testów, pytania do powtórki) zapisuje się w osobnych sekcjach i nie nadpisuje postępu kursu. Hasła zapisywane są wyłącznie jako skrót bcrypt.

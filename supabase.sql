@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════════════════
--- Leki ratownika — konta bez adresu e-mail (nick + hasło)
+-- Leki ratownika + Farmakologia — wspólne konta bez adresu e-mail (nick + hasło)
 -- Wklej całość w Supabase → SQL Editor → Run. Skrypt można uruchomić ponownie.
 -- ═══════════════════════════════════════════════════════════════
 
@@ -31,6 +31,7 @@ revoke all on public.konta, public.sesje from anon, authenticated;
 
 -- Scalanie postępu z dwóch urządzeń.
 -- Format: { "best": { "nzk": {"v":100,"t":1731760000000} }, "umiem": { "Adrenalina": {"v":true,"t":...} }, "dop": {...} }
+-- Sekcje kursu: best, umiem, dop. Sekcje apki „Farmakologia”: fz (fiszki), qe (pytania quizu), qh (wyniki testów).
 -- Dla "best" wygrywa wyższy wynik, dla pozostałych sekcji — nowsza zmiana.
 create or replace function public._scal(a jsonb, b jsonb)
 returns jsonb language sql immutable
@@ -56,7 +57,7 @@ as $$
     ) z
   )), '{}'::jsonb)
   from (
-    select x as sekcja from unnest(array['best', 'umiem', 'dop']) as x
+    select x as sekcja from unnest(array['best', 'umiem', 'dop', 'fz', 'qe', 'qh']) as x
   ) s;
 $$;
 
@@ -113,7 +114,7 @@ declare
 begin
   update sesje set uzyto = now() where token = p_token returning nick into n;
   if n is null then raise exception 'SESJA_WYGASLA'; end if;
-  if octet_length(coalesce(p_postep, '{}'::jsonb)::text) > 100000 then raise exception 'ZA_DUZO_DANYCH'; end if;
+  if octet_length(coalesce(p_postep, '{}'::jsonb)::text) > 400000 then raise exception 'ZA_DUZO_DANYCH'; end if;
   update konta set postep = _scal(postep, coalesce(p_postep, '{}'::jsonb)), zmieniono = now()
   where nick = n returning postep into wynik;
   return json_build_object('postep', wynik);
